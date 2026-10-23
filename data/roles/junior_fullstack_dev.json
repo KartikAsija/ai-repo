@@ -1,0 +1,226 @@
+{
+  "role_id": "junior_fullstack_dev",
+  "title": "Junior Full-Stack Developer",
+  "source": "SFIA 8 (Software Development PROG Level 2-3; Systems Design DESN Level 2) & UK Government Digital, Data and Technology (DDaT) Junior Developer Framework",
+  "last_reviewed": "2026-03-20",
+  "description": "Designs, implements, tests, and deploys responsive web applications, integrating modern frontend user interfaces with secure, scalable backend REST APIs and relational databases.",
+  "rubric": {
+    "1": "Novice: Knows basic HTML/CSS tags and introductory programming syntax (loops, conditionals). Requires guided step-by-step assistance to build any web page.",
+    "2": "Advanced Beginner: Can build simple static pages and implement basic CRUD endpoints using an existing tutorial or boilerplate. Understands common conventions with assistance.",
+    "3": "Competent (Job-Ready Baseline): Autonomously develops full-stack features: builds modular React components with state management, designs RESTful API endpoints with validation, handles DB migrations, writes unit tests, and uses Git branching.",
+    "4": "Proficient: Diagnoses complex frontend/backend bugs, refactors spaghetti code for testability, designs clean database schemas with indexing, and implements robust authentication/security best practices.",
+    "5": "Expert: Architects full-stack distributed system designs, establishes team CI/CD standards, mentors junior engineers, and conducts high-level technical code reviews."
+  },
+  "requirements": [
+    {
+      "req_id": "FS-REQ-01",
+      "skill": "Modern JavaScript & TypeScript Fundamentals",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": true,
+      "evidence_types": ["TypeScript code repository", "Async programming demo", "Utility library on GitHub"],
+      "description": "Deep understanding of ES6+, closures, promises, async/await, DOM APIs, and static typing with TypeScript interfaces and generics."
+    },
+    {
+      "req_id": "FS-REQ-02",
+      "skill": "React Component Architecture & State Management",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": false,
+      "evidence_types": ["React SPA repository", "Live deployed web application", "Custom hooks & context code"],
+      "description": "Building composable functional components, utilizing hooks (useState, useEffect, useMemo, custom hooks), managing state via Context or Redux/Zustand, and client-side routing."
+    },
+    {
+      "req_id": "FS-REQ-03",
+      "skill": "Backend REST API Development",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": true,
+      "evidence_types": ["Documented REST API with OpenAPI/Swagger", "FastAPI or Express repository", "Postman collection"],
+      "description": "Designing RESTful HTTP endpoints, handling request validation, proper HTTP status codes, error middleware, and API documentation with OpenAPI/Swagger."
+    },
+    {
+      "req_id": "FS-REQ-04",
+      "skill": "Relational Databases & ORM Integration",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "High",
+      "weight": 2.5,
+      "is_foundational": true,
+      "evidence_types": ["Database migration files", "ORM entity models", "Optimized SQL queries in code"],
+      "description": "Designing normalized relational schemas (PostgreSQL/SQLite), writing database migrations, using ORMs (SQLAlchemy, Prisma, or TypeORM), and indexing foreign keys."
+    },
+    {
+      "req_id": "FS-REQ-05",
+      "skill": "Automated Testing & Test-Driven Development",
+      "category": "Tooling",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": false,
+      "evidence_types": ["Unit & integration test suite in repo", "Test coverage report >75%", "Mocking external services demo"],
+      "description": "Writing unit and integration tests using frameworks such as Pytest, Jest, or Vitest; testing API endpoints, mocking external dependencies, and validating edge cases."
+    },
+    {
+      "req_id": "FS-REQ-06",
+      "skill": "Git Collaboration & Pull Request Workflow",
+      "category": "Tooling",
+      "required_level": 3,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": true,
+      "evidence_types": ["Merged GitHub Pull Requests", "Clean semantic git commit history", "Code review comments"],
+      "description": "Feature branching workflows, writing semantic commit messages, resolving merge conflicts, and conducting constructive peer pull request reviews."
+    },
+    {
+      "req_id": "FS-REQ-07",
+      "skill": "Web Security Fundamentals",
+      "category": "Domain Knowledge",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 1.5,
+      "is_foundational": false,
+      "evidence_types": ["Secure authentication implementation (JWT/Session)", "CORS configuration", "Input sanitization tests"],
+      "description": "Protecting web applications against OWASP Top 10 vulnerabilities: SQL injection prevention, XSS mitigation, secure password hashing (bcrypt), CORS configuration, and JWT authentication."
+    },
+    {
+      "req_id": "FS-REQ-08",
+      "skill": "Responsive Styling & Web Accessibility (a11y)",
+      "category": "Core Technical",
+      "required_level": 2,
+      "importance": "Medium",
+      "weight": 1.5,
+      "is_foundational": false,
+      "evidence_types": ["Lighthouse Accessibility score >90", "Responsive mobile/tablet/desktop layouts", "ARIA attributes in markup"],
+      "description": "Building mobile-first responsive layouts with modern CSS (Flexbox, Grid, Tailwind CSS), adhering to WCAG 2.1 AA accessibility guidelines and semantic HTML."
+    },
+    {
+      "req_id": "FS-REQ-09",
+      "skill": "Containerization Basics with Docker",
+      "category": "Tooling",
+      "required_level": 2,
+      "importance": "Medium",
+      "weight": 1.0,
+      "is_foundational": false,
+      "evidence_types": ["Multi-stage Dockerfile", "docker-compose.yml file", "Containerized local setup guide"],
+      "description": "Writing optimized Dockerfiles for frontend and backend applications, orchestrating multi-container environments with docker-compose, and understanding container isolation."
+    }
+  ],
+  "learning_resources": [
+    {
+      "resource_id": "RES-FS-01",
+      "title": "MDN Web Docs: JavaScript Guide & Asynchronous Programming",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+      "est_hours": 12.0,
+      "covers_req_ids": ["FS-REQ-01"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-02",
+      "title": "Official React Documentation: Thinking in React & Hooks",
+      "url": "https://react.dev/learn",
+      "est_hours": 14.0,
+      "covers_req_ids": ["FS-REQ-02"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-03",
+      "title": "FastAPI Official Tutorial: Building Robust RESTful APIs",
+      "url": "https://fastapi.tiangolo.com/tutorial/",
+      "est_hours": 10.0,
+      "covers_req_ids": ["FS-REQ-03"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-04",
+      "title": "SQLAlchemy 2.0 Official Unified Tutorial",
+      "url": "https://docs.sqlalchemy.org/en/20/tutorial/",
+      "est_hours": 8.0,
+      "covers_req_ids": ["FS-REQ-04"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-05",
+      "title": "Test-Driven Development with Pytest & Vitest Guide",
+      "url": "https://docs.pytest.org/en/stable/getting-started.html",
+      "est_hours": 8.0,
+      "covers_req_ids": ["FS-REQ-05"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-06",
+      "title": "OWASP Web Security Testing Guide & Top 10",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "est_hours": 6.0,
+      "covers_req_ids": ["FS-REQ-07"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-07",
+      "title": "Docker Get Started Official Curriculum",
+      "url": "https://docs.docker.com/get-started/",
+      "est_hours": 6.0,
+      "covers_req_ids": ["FS-REQ-09"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-FS-08",
+      "title": "WebAIM: Introduction to Web Accessibility & WCAG 2.1 Checklist",
+      "url": "https://webaim.org/intro/",
+      "est_hours": 5.0,
+      "covers_req_ids": ["FS-REQ-08"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    }
+  ],
+  "project_templates": [
+    {
+      "project_id": "PROJ-FS-01",
+      "title": "Full-Stack Task & Workflow Management Platform",
+      "brief": "Design and build a responsive web application allowing users to manage project tasks across stages. Include JWT authentication, SQLite/PostgreSQL persistence with migrations, REST API with automated validation, and a modern React UI.",
+      "est_hours": 22.0,
+      "skills_demonstrated": ["FS-REQ-01", "FS-REQ-02", "FS-REQ-03", "FS-REQ-04", "FS-REQ-07", "FS-REQ-08"],
+      "deliverables": [
+        "Backend FastAPI/Express service with OpenAPI documentation and input validation",
+        "Frontend React SPA built with Tailwind CSS and accessible interactive components",
+        "Automated unit tests covering authentication and task state transitions (>75% coverage)"
+      ],
+      "evidence_output": "Live deployed web application link + GitHub repository containing clean commits, unit tests, and architecture README."
+    },
+    {
+      "project_id": "PROJ-FS-02",
+      "title": "Containerized Developer Portfolio & Microservice Showcase",
+      "brief": "Build a production-grade personal developer showcase with Docker multi-stage builds, CI/CD pipeline automation via GitHub Actions, and an integrated status monitoring endpoint.",
+      "est_hours": 16.0,
+      "skills_demonstrated": ["FS-REQ-05", "FS-REQ-06", "FS-REQ-09"],
+      "deliverables": [
+        "Multi-stage Dockerfile and docker-compose orchestration file",
+        "Configured GitHub Actions workflow running tests and linter on every commit",
+        "Live deployed portfolio website with automated health check status"
+      ],
+      "evidence_output": "Public GitHub repository with passing CI badges, container orchestration configuration, and live URL."
+    }
+  ]
+}
+

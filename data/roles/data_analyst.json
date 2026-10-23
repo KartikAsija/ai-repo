@@ -1,0 +1,215 @@
+{
+  "role_id": "data_analyst",
+  "title": "Data Analyst",
+  "source": "O*NET Online (15-2051.01 - Business Intelligence Analysts; 15-2051.00 - Data Scientists) & SFIA 8 (Business Intelligence BINT Level 2-3)",
+  "last_reviewed": "2026-03-15",
+  "description": "Collects, cleans, models, and interprets data to uncover actionable insights, build predictive reporting metrics, and empower executive business decision-making.",
+  "rubric": {
+    "1": "Novice: Understands basic terminology, spreadsheet rows/columns, and simple calculation syntax. Requires guided walkthroughs for all tasks.",
+    "2": "Advanced Beginner: Can write basic SELECT queries, perform standard VLOOKUP/FILTER formulas, and create simple charts with documentation reference.",
+    "3": "Competent (Job-Ready Baseline): Autonomously writes multi-table SQL joins, builds clean Pandas data-cleaning pipelines, designs interactive BI dashboards, and documents methodology.",
+    "4": "Proficient: Optimizes slow analytical queries, builds robust dimensional data models (star schema), automates scheduled reporting, and communicates technical insights to executives.",
+    "5": "Expert: Architects enterprise data warehousing policies, designs predictive statistical models, establishes organization-wide data governance, and mentors junior analysts."
+  },
+  "requirements": [
+    {
+      "req_id": "DA-REQ-01",
+      "skill": "Spreadsheet Modeling & Advanced Formulas",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": true,
+      "evidence_types": ["Multi-tab financial/operational spreadsheet", "Documented nested formulas & INDEX/MATCH", "PivotTable dashboard"],
+      "description": "Proficiency in data cleaning, nested lookup formulas (XLOOKUP, INDEX/MATCH), Pivot Tables, dynamic arrays, and structured modeling."
+    },
+    {
+      "req_id": "DA-REQ-02",
+      "skill": "Relational Databases & SQL Querying",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": true,
+      "evidence_types": ["Documented SQL scripts on GitHub", "Complex query explanations", "Entity-Relationship diagram (ERD)"],
+      "description": "Writing complex SELECT queries, inner/outer JOINs, GROUP BY aggregations, window functions (ROW_NUMBER, RANK, LAG/LEAD), subqueries, and CTEs."
+    },
+    {
+      "req_id": "DA-REQ-03",
+      "skill": "Data Cleaning & Transformation with Python",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 2.5,
+      "is_foundational": false,
+      "evidence_types": ["Jupyter Notebook on GitHub", "Automated data pipeline script", "Documented missing value handling"],
+      "description": "Using Python with Pandas and NumPy for missing value imputation, data type casting, string manipulation, datetime operations, and outlier detection."
+    },
+    {
+      "req_id": "DA-REQ-04",
+      "skill": "Exploratory Data Analysis & Statistics",
+      "category": "Core Technical",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": true,
+      "evidence_types": ["Statistical summary report", "Distribution & correlation charts", "Hypothesis testing notebook"],
+      "description": "Descriptive statistics (mean, median, standard deviation, IQR), correlation matrices, distribution skewness analysis, and basic hypothesis testing."
+    },
+    {
+      "req_id": "DA-REQ-05",
+      "skill": "Business Intelligence Dashboards",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 2.5,
+      "is_foundational": false,
+      "evidence_types": ["Interactive Power BI or Tableau public workbook", "User-friendly KPI executive dashboard", "Data model documentation"],
+      "description": "Designing user-centric interactive dashboards using Power BI or Tableau with DAX/calculated fields, drill-through filters, and star schema modeling."
+    },
+    {
+      "req_id": "DA-REQ-06",
+      "skill": "Stakeholder Presentation & Storytelling",
+      "category": "Soft Skills / Employability",
+      "required_level": 3,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": false,
+      "evidence_types": ["Slide deck executive summary (PDF)", "Loom/video walkthrough recording", "Written business recommendations"],
+      "description": "Translating technical analytical findings into clear business narratives with actionable recommendations, executive summaries, and visual storytelling."
+    },
+    {
+      "req_id": "DA-REQ-07",
+      "skill": "Data Governance, Ethics & Privacy",
+      "category": "Domain Knowledge",
+      "required_level": 2,
+      "importance": "Medium",
+      "weight": 1.0,
+      "is_foundational": false,
+      "evidence_types": ["Data dictionary documentation", "Ethics checklist in project README", "Sanitized dataset confirmation"],
+      "description": "Understanding PII regulations (GDPR, CCPA), dataset anonymization, citation of data sources, and avoiding algorithmic reporting bias."
+    },
+    {
+      "req_id": "DA-REQ-08",
+      "skill": "Version Control & Project Documentation",
+      "category": "Tooling",
+      "required_level": 2,
+      "importance": "Medium",
+      "weight": 1.5,
+      "is_foundational": true,
+      "evidence_types": ["Public GitHub repository with comprehensive README", "Clean commit history", "Reproducible environment setup"],
+      "description": "Using Git for version control, structuring clean data science repositories with virtual environments, requirements.txt, and Markdown READMEs."
+    }
+  ],
+  "learning_resources": [
+    {
+      "resource_id": "RES-DA-01",
+      "title": "Excel for Data Analysis - Microsoft Free Training",
+      "url": "https://support.microsoft.com/en-us/office/excel-video-training-9bc05390-e94c-46af-977d-07f40f1173e6",
+      "est_hours": 6.0,
+      "covers_req_ids": ["DA-REQ-01"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-02",
+      "title": "Mode Analytics Interactive SQL Tutorial for Data Analysis",
+      "url": "https://mode.com/sql-tutorial/",
+      "est_hours": 12.0,
+      "covers_req_ids": ["DA-REQ-02"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-03",
+      "title": "Kaggle Learn: Pandas & Data Cleaning",
+      "url": "https://www.kaggle.com/learn/pandas",
+      "est_hours": 8.0,
+      "covers_req_ids": ["DA-REQ-03"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-04",
+      "title": "Khan Academy: Statistics and Probability",
+      "url": "https://www.khanacademy.org/math/statistics-probability",
+      "est_hours": 10.0,
+      "covers_req_ids": ["DA-REQ-04"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-05",
+      "title": "Microsoft Learn: Create and Use Analytics Reports with Power BI",
+      "url": "https://learn.microsoft.com/en-us/training/paths/create-use-analytics-reports-power-bi/",
+      "est_hours": 14.0,
+      "covers_req_ids": ["DA-REQ-05"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-06",
+      "title": "Storytelling with Data: Practice Exercises and Visual Hierarchy",
+      "url": "https://www.storytellingwithdata.com/blog/exercise-gallery",
+      "est_hours": 6.0,
+      "covers_req_ids": ["DA-REQ-06"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-07",
+      "title": "freeCodeCamp: Git and GitHub for Beginners",
+      "url": "https://www.freecodecamp.org/news/git-and-github-for-beginners/",
+      "est_hours": 4.0,
+      "covers_req_ids": ["DA-REQ-08"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-DA-08",
+      "title": "Open Data Institute: Data Ethics Canvas & Best Practices",
+      "url": "https://theodi.org/article/the-data-ethics-canvas-2021/",
+      "est_hours": 4.0,
+      "covers_req_ids": ["DA-REQ-07"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    }
+  ],
+  "project_templates": [
+    {
+      "project_id": "PROJ-DA-01",
+      "title": "Retail Customer Churn & Retention SQL Analysis",
+      "brief": "Perform in-depth SQL cohort analysis on a public 100,000-transaction retail dataset. Extract customer lifetime value (LTV), identify high-risk churn indicators using window functions, and construct a Star Schema data model.",
+      "est_hours": 16.0,
+      "skills_demonstrated": ["DA-REQ-02", "DA-REQ-04"],
+      "deliverables": [
+        "Documented SQL script repository with schema DDL and analytical CTEs",
+        "Entity-Relationship Diagram (ERD) in DBML or PNG format",
+        "Executive Markdown summary highlighting 3 key retention drivers"
+      ],
+      "evidence_output": "Public GitHub repository with documented queries, database setup instructions, and executive markdown findings."
+    },
+    {
+      "project_id": "PROJ-DA-02",
+      "title": "Executive Sales & Product Performance BI Dashboard",
+      "brief": "Clean and transform raw multi-source CSV files using Python/Pandas, then build an interactive Power BI or Tableau dashboard featuring dynamic filtering, YoY growth metrics, and customer segment drill-downs.",
+      "est_hours": 18.0,
+      "skills_demonstrated": ["DA-REQ-03", "DA-REQ-05", "DA-REQ-06", "DA-REQ-07"],
+      "deliverables": [
+        "Jupyter Notebook detailing data cleaning, handling missing values, and aggregation",
+        "Interactive Power BI / Tableau public dashboard link with 3 distinct view tabs",
+        "Slide deck (5 slides, PDF) with business narrative and strategic recommendations"
+      ],
+      "evidence_output": "Live interactive BI public link accompanied by GitHub repository hosting Python cleaning scripts, data dictionary, and executive slide deck."
+    }
+  ]
+}
+

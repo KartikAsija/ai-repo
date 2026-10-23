@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #0B1220;
+  --bg-card: #111C33;
+  --bg-surface: #17243B;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --accent-cyan: #38BDF8;
+  --btn-primary: #0F766E;
+  --btn-primary-hover: #115E59;
+  --border-color: #334155;
+  --hero-gradient: linear-gradient(120deg, #0B1220 0%, #132B46 55%, #0F766E 100%);
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    @apply selection:bg-teal-600 selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Accessible focus indicators across the application */
+  *:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}

@@ -1,0 +1,195 @@
+{
+  "role_id": "cloud_devops_associate",
+  "title": "Cloud/DevOps Associate",
+  "source": "O*NET Online (15-1251.00 - Computer Systems Engineers/DevOps) & Linux Foundation / AWS Certified SysOps & Solutions Architect Associate Frameworks",
+  "last_reviewed": "2026-03-22",
+  "description": "Automates software delivery pipelines, manages resilient cloud infrastructure via code (IaC), ensures high availability and security, and monitors production workloads.",
+  "rubric": {
+    "1": "Novice: Understands cloud computing definitions (IaaS, PaaS, SaaS) and basic terminal commands. Requires manual step-by-step guidance to launch a virtual machine.",
+    "2": "Advanced Beginner: Can launch cloud instances via the web console, execute basic Bash scripts, and build simple Docker containers from existing examples.",
+    "3": "Competent (Job-Ready Baseline): Autonomously provisions cloud infrastructure using Terraform, authors multi-stage GitHub Actions CI/CD pipelines, configures secure IAM policies, and troubleshoots Linux networking.",
+    "4": "Proficient: Designs fault-tolerant multi-zone cloud architectures, implements automated rolling deployments with rollback triggers, optimizes cloud infrastructure costs, and establishes centralized observability.",
+    "5": "Expert: Architects multi-cloud hybrid systems, defines enterprise zero-trust security postures, directs disaster recovery simulations, and mentors operations engineering teams."
+  },
+  "requirements": [
+    {
+      "req_id": "CL-REQ-01",
+      "skill": "Linux Systems Administration & Shell Scripting",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": true,
+      "evidence_types": ["Bash automation scripts on GitHub", "Linux server configuration notes", "Terminal command screencast"],
+      "description": "Mastery of Linux CLI navigation, file system permissions (chmod, chown), process management (systemd, top/ps), cron scheduling, and Bash automation scripts."
+    },
+    {
+      "req_id": "CL-REQ-02",
+      "skill": "Core Cloud Infrastructure & Networking",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 3.0,
+      "is_foundational": true,
+      "evidence_types": ["Cloud architecture diagram", "Documented VPC and subnet topology", "Live deployed cloud resource"],
+      "description": "Configuring Virtual Private Clouds (VPCs), public/private subnets, Internet Gateways, NAT Gateways, Route Tables, Security Groups, and Elastic Load Balancers."
+    },
+    {
+      "req_id": "CL-REQ-03",
+      "skill": "Containerization & Docker Orchestration",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 2.5,
+      "is_foundational": false,
+      "evidence_types": ["Multi-stage Dockerfile", "Docker Compose multi-service app", "Container security scan output"],
+      "description": "Building lean, secure multi-stage Docker images, configuring container networking and persistent volumes, and running container workloads."
+    },
+    {
+      "req_id": "CL-REQ-04",
+      "skill": "CI/CD Pipeline Automation",
+      "category": "Core Technical",
+      "required_level": 3,
+      "importance": "Critical",
+      "weight": 2.5,
+      "is_foundational": false,
+      "evidence_types": ["GitHub Actions YAML workflows", "Automated deployment logs", "Automated test gate badges"],
+      "description": "Authoring automated Continuous Integration and Continuous Deployment pipelines using GitHub Actions or GitLab CI with linting, testing, and cloud deployment steps."
+    },
+    {
+      "req_id": "CL-REQ-05",
+      "skill": "Infrastructure as Code (IaC) with Terraform",
+      "category": "Core Technical",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": false,
+      "evidence_types": ["Modular Terraform configurations on GitHub", "Terraform plan/apply execution logs", "Remote state setup documentation"],
+      "description": "Declarative cloud provisioning with Terraform: managing providers, state files, modular resource blocks, variable definitions, and idempotency."
+    },
+    {
+      "req_id": "CL-REQ-06",
+      "skill": "Cloud Security, IAM & Secret Management",
+      "category": "Domain Knowledge",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 2.0,
+      "is_foundational": true,
+      "evidence_types": ["Least-privilege IAM policy JSON", "Vault / Secrets Manager integration", "Security audit report"],
+      "description": "Implementing least-privilege IAM roles and policies, configuring MFA, rotating API credentials, and securing environment secrets with Vault or Cloud Secrets Manager."
+    },
+    {
+      "req_id": "CL-REQ-07",
+      "skill": "Observability, Logging & Alerting",
+      "category": "Tooling",
+      "required_level": 2,
+      "importance": "High",
+      "weight": 1.5,
+      "is_foundational": false,
+      "evidence_types": ["Prometheus & Grafana dashboard screenshot", "CloudWatch alarm configuration", "Structured log aggregation demo"],
+      "description": "Setting up centralized log aggregation, defining SLIs/SLOs, configuring health metric alarms, and instrumenting dashboards using Prometheus and Grafana."
+    },
+    {
+      "req_id": "CL-REQ-08",
+      "skill": "GitOps & Version Controlled Infrastructure",
+      "category": "Tooling",
+      "required_level": 2,
+      "importance": "Medium",
+      "weight": 1.5,
+      "is_foundational": true,
+      "evidence_types": ["GitOps repository structure", "Pull request automation for IaC", "Commit history with change approvals"],
+      "description": "Managing infrastructure configurations through Git with pull request verification, automated plan generation, and code review audit trails."
+    }
+  ],
+  "learning_resources": [
+    {
+      "resource_id": "RES-CL-01",
+      "title": "Linux Journey: Free Comprehensive Linux Fundamentals",
+      "url": "https://linuxjourney.com/",
+      "est_hours": 10.0,
+      "covers_req_ids": ["CL-REQ-01"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-CL-02",
+      "title": "AWS Skill Builder: Cloud Practitioner Essentials",
+      "url": "https://explore.skillbuilder.aws/learn/course/external/view/elearning/134/aws-cloud-practitioner-essentials",
+      "est_hours": 12.0,
+      "covers_req_ids": ["CL-REQ-02", "CL-REQ-06"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-CL-03",
+      "title": "freeCodeCamp: Docker and Kubernetes Tutorial for Beginners",
+      "url": "https://www.freecodecamp.org/news/the-docker-handbook/",
+      "est_hours": 8.0,
+      "covers_req_ids": ["CL-REQ-03"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-CL-04",
+      "title": "GitHub Skills: Automate Workflows with GitHub Actions",
+      "url": "https://skills.github.com/",
+      "est_hours": 8.0,
+      "covers_req_ids": ["CL-REQ-04"],
+      "level_from": 1,
+      "level_to": 3,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-CL-05",
+      "title": "HashiCorp Learn: Terraform Getting Started Tutorials",
+      "url": "https://developer.hashicorp.com/terraform/tutorials",
+      "est_hours": 10.0,
+      "covers_req_ids": ["CL-REQ-05", "CL-REQ-08"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    },
+    {
+      "resource_id": "RES-CL-06",
+      "title": "Prometheus & Grafana: Practical Monitoring Guide",
+      "url": "https://prometheus.io/docs/introduction/overview/",
+      "est_hours": 6.0,
+      "covers_req_ids": ["CL-REQ-07"],
+      "level_from": 1,
+      "level_to": 2,
+      "cost": "Free"
+    }
+  ],
+  "project_templates": [
+    {
+      "project_id": "PROJ-CL-01",
+      "title": "Automated End-to-End Cloud CI/CD & Infrastructure Pipeline",
+      "brief": "Provision a resilient VPC network using Terraform modules, build a secure multi-stage Docker container for a web API, and configure a GitHub Actions workflow that automatically tests and deploys changes on git merge.",
+      "est_hours": 20.0,
+      "skills_demonstrated": ["CL-REQ-01", "CL-REQ-02", "CL-REQ-03", "CL-REQ-04", "CL-REQ-05"],
+      "deliverables": [
+        "Modular Terraform codebase creating VPC, security groups, and cloud server instances",
+        "Multi-stage Dockerfile and GitHub Actions pipeline YAML file with automated testing",
+        "Architecture diagram (Draw.io/PNG) with traffic flow and security zones"
+      ],
+      "evidence_output": "Public GitHub repository with IaC code, passing CI/CD badge, and deployment documentation."
+    },
+    {
+      "project_id": "PROJ-CL-02",
+      "title": "Production Observability & Automated Health Monitoring System",
+      "brief": "Set up a centralized monitoring stack using Prometheus and Grafana to track latency, CPU, and error rate metrics. Configure automated alert rules triggered when HTTP 5xx errors breach thresholds.",
+      "est_hours": 14.0,
+      "skills_demonstrated": ["CL-REQ-06", "CL-REQ-07", "CL-REQ-08"],
+      "deliverables": [
+        "Docker Compose stack orchestrating Prometheus, Node Exporter, and Grafana",
+        "Exported Grafana Dashboard JSON with golden signals visualization",
+        "Incident response Runbook (Markdown) documenting recovery steps for threshold breaches"
+      ],
+      "evidence_output": "Public GitHub repository containing monitoring configuration, exported dashboard JSON, and Runbook markdown."
+    }
+  ]
+}
+
