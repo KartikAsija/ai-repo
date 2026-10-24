@@ -9,35 +9,43 @@ export default {
       colors: {
         theme: {
           bg: '#0B1220',
-          card: '#111C33',
-          surface: '#17243B',
-          text: '#F8FAFC',
-          muted: '#CBD5E1',
-          accent: '#38BDF8',
-          primary: '#0F766E',
-          'primary-hover': '#115E59',
-          'primary-active': '#134E4A',
-          border: '#334155',
+          card: '#141F32',
+          surface: '#1A2940',
+          accent: '#22C5E5',
+          'accent-hover': '#06B6D4',
+          text: '#F1F5F9',
+          muted: '#94A3B8',
+          border: '#29384F',
+          success: '#34D399',
+          warning: '#FBBF24',
+          error: '#F87171',
         },
         slate: {
           950: '#0B1220', // Main background
-          900: '#111C33', // Cards and panels
-          850: '#142038',
-          800: '#17243B', // Secondary surfaces
-          700: '#334155', // Borders
-          600: '#475569',
+          900: '#141F32', // Card background
+          850: '#17243B',
+          800: '#1A2940', // Elevated surfaces
+          700: '#29384F', // Borders
+          600: '#3D506E',
           500: '#64748B',
-          400: '#94A3B8',
-          300: '#CBD5E1', // Secondary text
+          400: '#94A3B8', // Secondary text
+          300: '#CBD5E1',
           200: '#E2E8F0',
-          100: '#F8FAFC', // Primary text
+          100: '#F1F5F9', // Primary text
           50: '#FFFFFF',
         }
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(120deg, #0B1220 0%, #132B46 55%, #0F766E 100%)',
+        'hero-gradient': 'linear-gradient(120deg, #0B1220 0%, #142842 55%, #0E7490 100%)',
+        'card-gradient': 'linear-gradient(180deg, rgba(26, 41, 64, 0.5) 0%, rgba(20, 31, 50, 0.8) 100%)',
+      },
+      boxShadow: {
+        'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.4)',
+        'elevated': '0 4px 20px -2px rgba(0, 0, 0, 0.5)',
+        'glow-accent': '0 0 15px -3px rgba(34, 197, 229, 0.25)',
       }
     },
   },
   plugins: [],
 }
+

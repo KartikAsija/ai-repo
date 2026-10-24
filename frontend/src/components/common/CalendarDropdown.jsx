@@ -112,16 +112,16 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
       <div
         data-testid="calendar-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-[#0B1220] border border-[#334155] hover:border-slate-500 rounded-lg px-3 py-2 text-xs text-[#F8FAFC] cursor-pointer flex items-center justify-between transition-colors focus-within:ring-2 focus-within:ring-[#38BDF8]"
+        className="w-full bg-[#0B1220] border border-[#29384F] hover:border-[#3D506E] rounded-lg px-3 py-2 text-xs text-[#F1F5F9] cursor-pointer flex items-center justify-between transition-colors focus-within:ring-1 focus-within:ring-[#22C5E5] focus-within:border-[#22C5E5]"
       >
         <div className="flex items-center gap-2 truncate">
-          <CalendarIcon className="w-4 h-4 text-[#38BDF8] shrink-0" />
+          <CalendarIcon className="w-4 h-4 text-[#22C5E5] shrink-0" />
           {value ? (
-            <span className="font-medium text-[#F8FAFC]">
-              {formatDisplay(value)} <span className="text-[#CBD5E1] font-mono text-[11px]">({value})</span>
+            <span className="font-medium text-[#F1F5F9]">
+              {formatDisplay(value)} <span className="text-[#94A3B8] font-mono text-[11px]">({value})</span>
             </span>
           ) : (
-            <span className="text-[#CBD5E1]">{placeholder}</span>
+            <span className="text-[#94A3B8]">{placeholder}</span>
           )}
         </div>
 
@@ -130,7 +130,7 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
             <button
               type="button"
               onClick={handleClear}
-              className="text-[#CBD5E1] hover:text-rose-400 p-0.5 rounded transition-colors"
+              className="text-[#94A3B8] hover:text-[#F87171] p-0.5 rounded transition-colors"
               title="Clear date"
             >
               <X className="w-3.5 h-3.5" />
@@ -141,29 +141,29 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
 
       {/* Calendar Dropdown Popover */}
       {isOpen && (
-        <div className="absolute left-0 top-full mt-1.5 z-50 w-72 bg-[#111C33] border border-[#334155] rounded-xl p-3 shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute left-0 top-full mt-1.5 z-50 w-72 bg-[#141F32] border border-[#29384F] rounded-xl p-3 shadow-elevated backdrop-blur-md animate-in fade-in zoom-in-95 duration-100">
           {/* Quick Presets */}
-          <div className="flex items-center justify-between gap-1 pb-2.5 mb-2.5 border-b border-[#334155] text-[10px]">
-            <span className="text-[#CBD5E1] font-semibold uppercase tracking-wider">Presets:</span>
+          <div className="flex items-center justify-between gap-1 pb-2.5 mb-2.5 border-b border-[#29384F] text-[10px]">
+            <span className="text-[#94A3B8] font-semibold uppercase tracking-wider">Presets:</span>
             <div className="flex gap-1">
               <button
                 type="button"
                 onClick={() => handleApplyPreset(3)}
-                className="px-2 py-0.5 rounded bg-[#17243B] hover:bg-[#1f3150] text-[#CBD5E1] hover:text-[#F8FAFC] border border-[#334155] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
               >
                 +3 Mo
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset(6)}
-                className="px-2 py-0.5 rounded bg-[#17243B] hover:bg-[#1f3150] text-[#CBD5E1] hover:text-[#F8FAFC] border border-[#334155] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
               >
                 +6 Mo
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset(12)}
-                className="px-2 py-0.5 rounded bg-[#17243B] hover:bg-[#1f3150] text-[#CBD5E1] hover:text-[#F8FAFC] border border-[#334155] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
               >
                 +1 Yr
               </button>
@@ -175,17 +175,17 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
             <button
               type="button"
               onClick={handlePrevMonth}
-              className="p-1 rounded-lg hover:bg-[#17243B] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors"
+              className="p-1 rounded-lg hover:bg-[#1A2940] text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <div className="font-bold text-xs text-[#F8FAFC]">
+            <div className="font-bold text-xs text-[#F1F5F9]">
               {monthNames[month]} {year}
             </div>
             <button
               type="button"
               onClick={handleNextMonth}
-              className="p-1 rounded-lg hover:bg-[#17243B] text-[#CBD5E1] hover:text-[#F8FAFC] transition-colors"
+              className="p-1 rounded-lg hover:bg-[#1A2940] text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -194,7 +194,7 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
           {/* Days of week header */}
           <div className="grid grid-cols-7 gap-1 text-center mb-1">
             {daysOfWeek.map((day) => (
-              <span key={day} className="text-[10px] font-semibold text-[#CBD5E1] py-0.5">
+              <span key={day} className="text-[10px] font-semibold text-[#94A3B8] py-0.5">
                 {day}
               </span>
             ))}
@@ -229,10 +229,10 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
                   onClick={() => handleSelectDay(dayNum)}
                   className={`w-8 h-7 text-xs rounded-md flex items-center justify-center transition-all ${
                     isSelected
-                      ? "bg-[#0F766E] text-white font-bold shadow-sm"
+                      ? "bg-[#22C5E5] text-[#0B1220] font-bold shadow-sm"
                       : isToday
-                      ? "border border-[#38BDF8] text-[#38BDF8] hover:bg-[#17243B]"
-                      : "text-[#F8FAFC] hover:bg-[#17243B]"
+                      ? "border border-[#22C5E5] text-[#22C5E5] hover:bg-[#1A2940]"
+                      : "text-[#F1F5F9] hover:bg-[#1A2940]"
                   }`}
                 >
                   {dayNum}
@@ -242,15 +242,15 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
           </div>
 
           {/* Footer with Today shortcut */}
-          <div className="mt-2.5 pt-2 border-t border-[#334155] flex justify-between items-center text-[10px]">
+          <div className="mt-2.5 pt-2 border-t border-[#29384F] flex justify-between items-center text-[10px]">
             <button
               type="button"
               onClick={() => handleApplyPreset(0)}
-              className="text-[#38BDF8] hover:text-sky-300 font-semibold"
+              className="text-[#22C5E5] hover:underline font-semibold"
             >
               Select Today
             </button>
-            <span className="text-[#CBD5E1]">Click day to choose</span>
+            <span className="text-[#94A3B8]">Click day to choose</span>
           </div>
         </div>
       )}

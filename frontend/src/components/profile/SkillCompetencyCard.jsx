@@ -77,19 +77,19 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
   const displayLevel = hoverLevel || currentLevel;
 
   return (
-    <div className="p-4 bg-[#111C33] border border-[#334155] hover:border-slate-500 rounded-xl space-y-3.5 transition-colors shadow-sm">
+    <div className="p-4 bg-[#141F32] border border-[#29384F] hover:border-[#3D506E] rounded-xl space-y-3.5 transition-all shadow-subtle">
       {/* Top Row: Skill Name & Interactive Stars */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs sm:text-sm font-bold text-[#F8FAFC]">{skill.skill_name}</span>
-          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#17243B] text-[#38BDF8] border border-[#334155]">
+          <span className="text-xs sm:text-sm font-bold text-[#F1F5F9]">{skill.skill_name}</span>
+          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#1A2940] text-[#22C5E5] border border-[#29384F]">
             Level {displayLevel}
           </span>
           <span
             className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
               isVerified
-                ? "bg-emerald-950/40 text-emerald-400 border border-emerald-700/50"
-                : "bg-amber-950/40 text-amber-300 border border-amber-700/50"
+                ? "bg-[#34D399]/15 text-[#34D399] border border-[#34D399]/30"
+                : "bg-[#FBBF24]/15 text-[#FBBF24] border border-[#FBBF24]/30"
             }`}
           >
             {isVerified ? "Verified Proof" : "Unverified"}
@@ -99,12 +99,12 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
         {/* 5-Star Instant Rating Interface with Level on the Left */}
         <div className="flex items-center gap-2">
           {/* Level text description on the left of stars */}
-          <span className="text-[11px] font-semibold text-[#CBD5E1] bg-[#17243B] px-2.5 py-1 rounded-md border border-[#334155] whitespace-nowrap min-w-[155px] text-center">
+          <span className="text-[11px] font-semibold text-[#94A3B8] bg-[#1A2940] px-2.5 py-1 rounded-md border border-[#29384F] whitespace-nowrap min-w-[155px] text-center">
             {RUBRIC_LABELS[displayLevel]}
           </span>
 
           <div
-            className="flex items-center gap-0.5 bg-[#0B1220] px-2 py-1 rounded-lg border border-[#334155]"
+            className="flex items-center gap-0.5 bg-[#0B1220] px-2 py-1 rounded-lg border border-[#29384F]"
             onMouseLeave={() => setHoverLevel(0)}
           >
             {[1, 2, 3, 4, 5].map((lvl) => {
@@ -120,10 +120,10 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
                   title={`Rate as Level ${lvl}: ${RUBRIC_LABELS[lvl]}`}
                 >
                   <Star
-                    className={`w-5 h-5 ${
+                    className={`w-5 h-5 transition-colors ${
                       isFilled
-                        ? "text-amber-400 fill-amber-400"
-                        : "text-slate-600 hover:text-amber-300"
+                        ? "text-[#FBBF24] fill-[#FBBF24]"
+                        : "text-[#29384F] hover:text-[#FBBF24]/60"
                     }`}
                   />
                 </button>
@@ -134,19 +134,19 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
       </div>
 
       {/* Uploading & Proof Step with Dropdown Option */}
-      <div className="pt-2.5 border-t border-[#334155] space-y-2">
+      <div className="pt-2.5 border-t border-[#29384F] space-y-2">
         <div className="flex items-center justify-between text-[11px]">
-          <span className="text-[#CBD5E1] font-medium flex items-center gap-1.5">
-            <UploadCloud className="w-3.5 h-3.5 text-[#38BDF8]" />
+          <span className="text-[#94A3B8] font-medium flex items-center gap-1.5">
+            <UploadCloud className="w-3.5 h-3.5 text-[#22C5E5]" />
             <span>Upload or Attach Verification Proof</span>
           </span>
           {isVerified ? (
-            <span className="text-[10px] text-emerald-400 font-semibold flex items-center gap-1">
+            <span className="text-[10px] text-[#34D399] font-semibold flex items-center gap-1">
               <CheckCircle2 className="w-3 h-3" />
               Verified Artifact
             </span>
           ) : (
-            <span className="text-[10px] text-slate-400 italic">
+            <span className="text-[10px] text-[#94A3B8] italic">
               Optional: adds verified badge
             </span>
           )}
@@ -158,15 +158,15 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
             <select
               value={evidenceType}
               onChange={(e) => setEvidenceType(e.target.value)}
-              className="w-full bg-[#0B1220] border border-[#334155] hover:border-slate-500 rounded-lg px-2.5 py-1.5 text-xs text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#38BDF8] focus:border-[#38BDF8] appearance-none pr-7 cursor-pointer"
+              className="w-full bg-[#0B1220] border border-[#29384F] hover:border-[#3D506E] rounded-lg px-2.5 py-1.5 text-xs text-[#F1F5F9] focus:outline-none focus:ring-1 focus:ring-[#22C5E5] focus:border-[#22C5E5] appearance-none pr-7 cursor-pointer"
             >
               {EVIDENCE_TYPES.map((opt) => (
-                <option key={opt.id} value={opt.id} className="bg-[#111C33] text-[#F8FAFC]">
+                <option key={opt.id} value={opt.id} className="bg-[#141F32] text-[#F1F5F9]">
                   {opt.label}
                 </option>
               ))}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-[#CBD5E1] absolute right-2 top-2.5 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-[#94A3B8] absolute right-2 top-2.5 pointer-events-none" />
           </div>
 
           {/* Input & Upload File Controls */}
@@ -177,13 +177,13 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
                 placeholder={activePreset.placeholder}
                 value={skill.proof_url || ""}
                 onChange={(e) => onProofChange(skill.skill_name, e.target.value)}
-                className="w-full bg-[#0B1220] border border-[#334155] focus:border-[#38BDF8] focus:ring-2 focus:ring-[#38BDF8] rounded-lg pl-2.5 pr-7 py-1.5 text-xs text-[#F8FAFC] focus:outline-none"
+                className="w-full bg-[#0B1220] border border-[#29384F] focus:border-[#22C5E5] focus:ring-1 focus:ring-[#22C5E5] rounded-lg pl-2.5 pr-7 py-1.5 text-xs text-[#F1F5F9] focus:outline-none"
               />
               {skill.proof_url && (
                 <button
                   type="button"
                   onClick={() => onProofChange(skill.skill_name, "")}
-                  className="absolute right-2 top-2 text-slate-400 hover:text-rose-400 transition-colors"
+                  className="absolute right-2 top-2 text-[#94A3B8] hover:text-[#F87171] transition-colors"
                   title="Clear proof link"
                 >
                   <X className="w-3 h-3" />
@@ -193,10 +193,10 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
 
             {/* Direct Local File Upload Button */}
             <label
-              className="px-2.5 py-1.5 bg-[#17243B] hover:bg-[#1f3150] text-[#F8FAFC] rounded-lg border border-[#334155] text-xs font-semibold cursor-pointer flex items-center gap-1 shrink-0 transition-colors focus-within:ring-2 focus-within:ring-[#38BDF8]"
+              className="px-2.5 py-1.5 bg-[#1A2940] hover:bg-[#1E3250] text-[#F1F5F9] rounded-lg border border-[#29384F] text-xs font-semibold cursor-pointer flex items-center gap-1 shrink-0 transition-colors focus-within:ring-1 focus-within:ring-[#22C5E5]"
               title="Upload a local certificate, report, or screenshot"
             >
-              <UploadCloud className="w-3.5 h-3.5 text-[#38BDF8]" />
+              <UploadCloud className="w-3.5 h-3.5 text-[#22C5E5]" />
               <span className="hidden sm:inline">Upload</span>
               <input
                 type="file"
@@ -211,7 +211,7 @@ function SkillCompetencyCard({ skill, onLevelChange, onProofChange }) {
                 href={skill.proof_url}
                 target="_blank"
                 rel="noreferrer"
-                className="p-1.5 bg-[#17243B] hover:bg-[#1f3150] text-[#38BDF8] rounded-lg border border-[#334155] shrink-0 transition-colors focus:ring-2 focus:ring-[#38BDF8]"
+                className="p-1.5 bg-[#1A2940] hover:bg-[#1E3250] text-[#22C5E5] rounded-lg border border-[#29384F] shrink-0 transition-colors focus:ring-1 focus:ring-[#22C5E5]"
                 title="Open external proof artifact"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
