@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { 
   Map, 
   ExternalLink, 
@@ -11,7 +11,12 @@ import {
   CheckCircle2,
   Calendar,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  BarChart2,
+  TrendingUp,
+  Target,
+  Filter,
+  RotateCcw
 } from "lucide-react";
 import { useLearner } from "../context/LearnerContext";
 import { api } from "../api/client";
@@ -21,6 +26,8 @@ export default function RoadmapPage({ setCurrentPage }) {
   const [roadmap, setRoadmap] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedStage, setSelectedStage] = useState(1);
+  const [selectedWeekFilter, setSelectedWeekFilter] = useState(null);
+  const [hoveredWeek, setHoveredWeek] = useState(null);
   const [activeTaskModal, setActiveTaskModal] = useState(null);
   const [loggedHoursInput, setLoggedHoursInput] = useState("");
   const [evidenceLinkInput, setEvidenceLinkInput] = useState("");
@@ -56,6 +63,46 @@ export default function RoadmapPage({ setCurrentPage }) {
     }
   };
 
+  const capacityLimit = activeLearner?.available_hours_per_week || 10;
+
+  // Aggregate weekly metrics for timeline graph
+  const weeksData = useMemo(() => {
+    if (!roadmap?.tasks) return [];
+    const map = {};
+    for (let w = 1; w <= roadmap.total_weeks; w++) {
+      map[w] = {
+        week: w,
+        plannedHours: 0,
+        completedHours: 0,
+        tasks: [],
+        stage: 1,
+        hasMilestone: false
+      };
+    }
+    roadmap.tasks.forEach((t) => {
+      const w = t.week_number;
+      if (!map[w]) {
+        map[w] = { week: w, plannedHours: 0, completedHours: 0, tasks: [], stage: t.stage, hasMilestone: false };
+      }
+      map[w].plannedHours += t.est_hours;
+      map[w].stage = t.stage;
+      if (t.status === "completed") {
+        map[w].completedHours += (t.logged_hours || t.est_hours);
+      }
+      if (t.title.toLowerCase().includes("milestone") || t.title.toLowerCase().includes("capstone")) {
+        map[w].hasMilestone = true;
+      }
+      map[w].tasks.push(t);
+    });
+    return Object.values(map).sort((a, b) => a.week - b.week);
+  }, [roadmap]);
+
+  // Max scale for chart (at least 20% higher than capacity or max hours)
+  const maxHoursScale = useMemo(() => {
+    const maxWeekHours = Math.max(0, ...weeksData.map((w) => w.plannedHours));
+    return Math.max(capacityLimit * 1.25, maxWeekHours * 1.2, 10);
+  }, [weeksData, capacityLimit]);
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-24 space-y-3">
@@ -83,6 +130,11 @@ export default function RoadmapPage({ setCurrentPage }) {
 
   const currentStageGroup = roadmap.stages.find((s) => s.stage === selectedStage) || roadmap.stages[0];
 
+  // Filter tasks if a week is selected from the graph
+  const displayedTasks = selectedWeekFilter
+    ? roadmap.tasks.filter((t) => t.week_number === selectedWeekFilter)
+    : currentStageGroup.tasks;
+
   return (
     <div className="space-y-6 pb-20">
       {/* Header */}
@@ -96,7 +148,7 @@ export default function RoadmapPage({ setCurrentPage }) {
             <span>Target Role: {roadmap.role_title}</span>
           </h1>
           <p className="text-xs text-[#94A3B8] mt-1">
-            Strict capacity packing: <strong>{activeLearner?.available_hours_per_week} hrs/week</strong> • {roadmap.total_weeks} Total Weeks • {roadmap.total_planned_hours} Planned Hours
+            Capacity-packed schedule: <strong>{activeLearner?.available_hours_per_week} hrs/week</strong> • {roadmap.total_weeks} Total Weeks • {roadmap.total_planned_hours} Planned Hours
           </p>
         </div>
 
@@ -117,13 +169,16 @@ export default function RoadmapPage({ setCurrentPage }) {
       {/* Stage Selector Tabs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {roadmap.stages.map((stg) => {
-          const isSelected = selectedStage === stg.stage;
+          const isSelected = selectedStage === stg.stage && selectedWeekFilter === null;
           const pct = stg.tasks_count > 0 ? Math.round((stg.completed_count / stg.tasks_count) * 100) : 0;
 
           return (
             <button
               key={stg.stage}
-              onClick={() => setSelectedStage(stg.stage)}
+              onClick={() => {
+                setSelectedStage(stg.stage);
+                setSelectedWeekFilter(null);
+              }}
               className={`p-4 rounded-xl border text-left transition-all ${
                 isSelected
                   ? "bg-[#141F32] border-[#22C5E5] shadow-glow-accent ring-1 ring-[#22C5E5]"
@@ -153,12 +208,186 @@ export default function RoadmapPage({ setCurrentPage }) {
         })}
       </div>
 
+      {/* ======================================================== */}
+      {/* VISUAL TIMELINE & WEEKLY CAPACITY ALLOCATION GRAPH       */}
+      {/* ======================================================== */}
+      <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-5 sm:p-6 space-y-4 shadow-subtle">
+        {/* Graph Header and Legend */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#29384F] pb-3">
+          <div>
+            <h2 className="text-sm font-bold text-[#F1F5F9] flex items-center gap-2">
+              <BarChart2 className="w-4 h-4 text-[#22C5E5]" />
+              <span>Weekly Capacity & Schedule Timeline Graph</span>
+            </h2>
+            <p className="text-xs text-[#94A3B8] mt-0.5">
+              Strict capacity packing: task hours are scheduled so no single week exceeds your {capacityLimit}h/wk limit.
+            </p>
+          </div>
+
+          {/* Interactive Legend */}
+          <div className="flex flex-wrap items-center gap-3 text-[11px] shrink-0">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#34D399]" />
+              <span className="text-[#94A3B8]">Completed Hours</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#22C5E5]" />
+              <span className="text-[#94A3B8]">Scheduled Hours</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="w-4 h-[2px] bg-[#FBBF24] border-t border-dashed border-[#FBBF24]" />
+              <span className="text-[#FBBF24] font-mono">Limit ({capacityLimit}h)</span>
+            </div>
+            {selectedWeekFilter && (
+              <button
+                onClick={() => setSelectedWeekFilter(null)}
+                className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#22C5E5] text-[10px] font-semibold border border-[#29384F]"
+                title="Reset week filter"
+              >
+                <RotateCcw className="w-3 h-3" />
+                <span>Show All Weeks</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* The Bar Chart Canvas */}
+        <div className="relative pt-6 pb-2">
+          {/* Capacity Threshold Line */}
+          <div 
+            className="absolute left-0 right-0 border-t-2 border-dashed border-[#FBBF24]/70 z-10 pointer-events-none flex items-center justify-end"
+            style={{ 
+              bottom: `${(capacityLimit / maxHoursScale) * 160 + 28}px` 
+            }}
+          >
+            <span className="bg-[#141F32] px-2 py-0.5 rounded text-[10px] font-mono font-bold text-[#FBBF24] border border-[#FBBF24]/40 -translate-y-1/2 mr-2">
+              Capacity Limit: {capacityLimit}h/wk
+            </span>
+          </div>
+
+          {/* Scrollable Bars Container */}
+          <div className="overflow-x-auto custom-scrollbar pb-2">
+            <div className="flex items-end gap-2 sm:gap-2.5 min-w-[620px] h-44 px-2">
+              {weeksData.map((w) => {
+                const totalHeightPct = Math.min(100, (w.plannedHours / maxHoursScale) * 100);
+                const completedHeightPct = w.plannedHours > 0 ? (w.completedHours / w.plannedHours) * 100 : 0;
+                const isSelected = selectedWeekFilter === w.week;
+                const isHovered = hoveredWeek === w.week;
+                const isAllDone = w.plannedHours > 0 && w.completedHours >= w.plannedHours;
+
+                return (
+                  <div
+                    key={w.week}
+                    className="flex-1 flex flex-col items-center group relative cursor-pointer"
+                    onMouseEnter={() => setHoveredWeek(w.week)}
+                    onMouseLeave={() => setHoveredWeek(null)}
+                    onClick={() => {
+                      setSelectedWeekFilter(isSelected ? null : w.week);
+                      setSelectedStage(w.stage);
+                    }}
+                  >
+                    {/* Tooltip on Hover */}
+                    {(isHovered || isSelected) && (
+                      <div className="absolute bottom-full mb-2 z-30 bg-[#0B1220] border border-[#29384F] text-[#F1F5F9] p-2 rounded-lg shadow-elevated text-[11px] whitespace-nowrap pointer-events-none animate-in fade-in zoom-in-95 duration-100">
+                        <div className="font-bold text-[#22C5E5]">
+                          Week {w.week} (Stage {w.stage})
+                        </div>
+                        <div className="text-[10px] text-[#94A3B8] font-mono">
+                          Planned: {w.plannedHours}h • Completed: {w.completedHours}h
+                        </div>
+                        <div className="text-[10px] text-[#94A3B8]">
+                          {w.tasks.length} task{w.tasks.length > 1 ? "s" : ""} scheduled
+                        </div>
+                        {w.hasMilestone && (
+                          <div className="text-[10px] text-[#FBBF24] font-semibold mt-0.5">
+                            ★ Milestone Checkpoint
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Milestone Star Indicator */}
+                    <div className="h-4 flex items-center justify-center mb-1">
+                      {w.hasMilestone && (
+                        <span className="text-[10px] text-[#FBBF24] leading-none" title="Milestone Week">
+                          ★
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Bar Pillar */}
+                    <div 
+                      className={`w-full max-w-[28px] rounded-t-md transition-all relative overflow-hidden ${
+                        isSelected 
+                          ? "ring-2 ring-[#22C5E5] shadow-glow-accent" 
+                          : "hover:opacity-90"
+                      }`}
+                      style={{ 
+                        height: `${Math.max(6, (totalHeightPct / 100) * 130)}px`,
+                        backgroundColor: '#1A2940' 
+                      }}
+                    >
+                      {/* Scheduled Hours Base (Cyan) */}
+                      <div className="absolute inset-0 bg-[#22C5E5]/70" />
+
+                      {/* Completed Hours Overlay (Emerald) */}
+                      {w.completedHours > 0 && (
+                        <div
+                          className="absolute bottom-0 left-0 right-0 bg-[#34D399] transition-all duration-300"
+                          style={{ height: `${completedHeightPct}%` }}
+                        />
+                      )}
+                    </div>
+
+                    {/* Week Label */}
+                    <div className="mt-2 text-center">
+                      <span className={`text-[10px] font-mono block ${
+                        isSelected 
+                          ? "text-[#22C5E5] font-bold" 
+                          : isAllDone
+                          ? "text-[#34D399]"
+                          : "text-[#94A3B8]"
+                      }`}>
+                        W{w.week}
+                      </span>
+                      <span className="text-[9px] text-[#94A3B8] font-mono block">
+                        {w.plannedHours}h
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Selected Week Indicator if filtered */}
+        {selectedWeekFilter && (
+          <div className="p-3 rounded-xl bg-[#0B1220] border border-[#22C5E5]/40 flex items-center justify-between text-xs">
+            <span className="text-[#94A3B8]">
+              Filtering tasks scheduled for <strong className="text-[#22C5E5]">Week {selectedWeekFilter}</strong> ({weeksData.find(w => w.week === selectedWeekFilter)?.tasks.length} tasks).
+            </span>
+            <button
+              onClick={() => setSelectedWeekFilter(null)}
+              className="text-[#22C5E5] hover:underline font-semibold text-xs"
+            >
+              Clear Filter
+            </button>
+          </div>
+        )}
+      </div>
+
       {/* Stage Detail Header Banner */}
       <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-subtle">
         <div className="space-y-0.5">
           <h2 className="text-sm font-bold text-[#F1F5F9] flex items-center gap-2">
             <Layers className="w-4 h-4 text-[#22C5E5]" />
-            <span>Stage {currentStageGroup.stage}: {currentStageGroup.stage_name}</span>
+            <span>
+              {selectedWeekFilter 
+                ? `Week ${selectedWeekFilter} Task Deliverables` 
+                : `Stage ${currentStageGroup.stage}: ${currentStageGroup.stage_name}`
+              }
+            </span>
           </h2>
           <p className="text-xs text-[#94A3B8]">
             Sequential pacing strictly packed into weekly milestones respecting your {activeLearner?.available_hours_per_week}h/week limit.
@@ -177,7 +406,7 @@ export default function RoadmapPage({ setCurrentPage }) {
 
       {/* Task Cards List */}
       <div className="space-y-4">
-        {currentStageGroup.tasks.map((task) => {
+        {displayedTasks.map((task) => {
           const isCompleted = task.status === "completed";
           const isInProgress = task.status === "in_progress";
           const isMilestone = task.title.toLowerCase().includes("milestone") || task.title.toLowerCase().includes("capstone");
