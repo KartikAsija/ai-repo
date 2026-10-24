@@ -106,21 +106,21 @@ export default function RoadmapPage({ setCurrentPage }) {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-24 space-y-3">
-        <div className="w-8 h-8 border-3 border-[#22C5E5] border-t-transparent rounded-full animate-spin" />
-        <div className="text-xs text-[#94A3B8]">Loading sequential schedule and weekly capacity allocation...</div>
+        <div className="w-8 h-8 border-2 border-[#58A6FF] border-t-transparent rounded-full animate-spin" />
+        <div className="text-xs text-[#8B949E]">Loading sequential schedule and weekly capacity allocation...</div>
       </div>
     );
   }
 
   if (!roadmap) {
     return (
-      <div className="text-center py-16 bg-[#141F32] rounded-2xl border border-[#29384F] p-8 shadow-subtle">
-        <AlertCircle className="w-8 h-8 text-[#FBBF24] mx-auto mb-2" />
-        <h3 className="text-sm font-bold text-[#F1F5F9]">No Active Roadmap</h3>
-        <p className="text-xs text-[#94A3B8] mt-1">Generate a schedule based on your profile to proceed.</p>
+      <div className="text-center py-16 bg-[#161B22] rounded-xl border border-[#30363D] p-8 shadow-subtle">
+        <AlertCircle className="w-8 h-8 text-[#D29922] mx-auto mb-2" />
+        <h3 className="text-sm font-bold text-[#F0F6FC]">No Active Roadmap</h3>
+        <p className="text-xs text-[#8B949E] mt-1">Generate a schedule based on your profile to proceed.</p>
         <button
           onClick={() => api.createRoadmap(activeLearnerId).then(loadRoadmap)}
-          className="mt-4 px-4 py-2 bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] rounded-lg text-xs font-bold shadow-sm"
+          className="mt-4 px-4 py-2 bg-[#1F6FEB] hover:bg-[#388BFD] text-white rounded-lg text-xs font-semibold shadow-sm transition-colors"
         >
           Generate Schedule Now
         </button>
@@ -138,28 +138,28 @@ export default function RoadmapPage({ setCurrentPage }) {
   return (
     <div className="space-y-6 pb-20">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#29384F] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#30363D] pb-4">
         <div>
-          <div className="text-[11px] font-semibold text-[#22C5E5] uppercase tracking-wider">
+          <div className="text-[11px] font-semibold text-[#58A6FF] uppercase tracking-wider">
             Staged Execution Roadmap (v{roadmap.version})
           </div>
-          <h1 className="text-2xl font-bold text-[#F1F5F9] flex items-center gap-2 mt-0.5">
-            <Map className="w-6 h-6 text-[#22C5E5]" />
+          <h1 className="text-2xl font-bold text-[#F0F6FC] flex items-center gap-2 mt-0.5">
+            <Map className="w-6 h-6 text-[#58A6FF]" />
             <span>Target Role: {roadmap.role_title}</span>
           </h1>
-          <p className="text-xs text-[#94A3B8] mt-1">
+          <p className="text-xs text-[#8B949E] mt-1">
             Capacity-packed schedule: <strong>{activeLearner?.available_hours_per_week} hrs/week</strong> • {roadmap.total_weeks} Total Weeks • {roadmap.total_planned_hours} Planned Hours
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <div className="text-[11px] text-[#94A3B8] font-medium">Roadmap Progress</div>
-            <div className="text-xl font-extrabold text-[#34D399]">{roadmap.completion_percentage}%</div>
+            <div className="text-[11px] text-[#8B949E] font-medium">Roadmap Progress</div>
+            <div className="text-xl font-bold text-[#3FB950]">{roadmap.completion_percentage}%</div>
           </div>
           <button
             onClick={() => setCurrentPage("dashboard")}
-            className="px-4 py-2 bg-[#1A2940] hover:bg-[#1E3250] border border-[#29384F] text-[#F1F5F9] rounded-xl text-xs font-semibold transition-colors focus:ring-1 focus:ring-[#22C5E5]"
+            className="px-4 py-2 bg-[#21262D] hover:bg-[#30363D] border border-[#30363D] text-[#F0F6FC] rounded-lg text-xs font-medium transition-colors focus:ring-1 focus:ring-[#58A6FF]"
           >
             Open Progress & Replan
           </button>
@@ -181,25 +181,25 @@ export default function RoadmapPage({ setCurrentPage }) {
               }}
               className={`p-4 rounded-xl border text-left transition-all ${
                 isSelected
-                  ? "bg-[#141F32] border-[#22C5E5] shadow-glow-accent ring-1 ring-[#22C5E5]"
-                  : "bg-[#141F32] border-[#29384F] hover:border-[#3D506E] hover:bg-[#1A2940]/50"
+                  ? "bg-[#161B22] border-[#58A6FF] shadow-sm ring-1 ring-[#58A6FF]"
+                  : "bg-[#161B22] border-[#30363D] hover:border-[#8B949E]/40 hover:bg-[#21262D]/50"
               }`}
             >
               <div className="flex items-center justify-between text-xs font-semibold">
-                <span className="text-[#22C5E5] font-mono">Stage 0{stg.stage}</span>
-                <span className="text-[#34D399] font-mono text-[11px]">{pct}% Done</span>
+                <span className="text-[#58A6FF] font-mono">Stage 0{stg.stage}</span>
+                <span className="text-[#3FB950] font-mono text-[11px]">{pct}% Done</span>
               </div>
-              <div className="text-xs font-bold text-[#F1F5F9] mt-1 truncate">{stg.stage_name}</div>
+              <div className="text-xs font-bold text-[#F0F6FC] mt-1 truncate">{stg.stage_name}</div>
               
               {/* Progress line */}
-              <div className="mt-2.5 w-full bg-[#0B1220] h-1 rounded-full overflow-hidden border border-[#29384F]/60">
+              <div className="mt-2.5 w-full bg-[#0D1117] h-1 rounded-full overflow-hidden border border-[#30363D]/60">
                 <div 
-                  className="bg-[#22C5E5] h-full rounded-full transition-all" 
+                  className="bg-[#58A6FF] h-full rounded-full transition-all" 
                   style={{ width: `${Math.min(100, Math.max(0, pct))}%` }} 
                 />
               </div>
 
-              <div className="mt-2 flex items-center justify-between text-[11px] text-[#94A3B8]">
+              <div className="mt-2 flex items-center justify-between text-[11px] text-[#8B949E]">
                 <span>{stg.tasks_count} tasks</span>
                 <span>{stg.total_hours} hrs total</span>
               </div>
@@ -211,15 +211,15 @@ export default function RoadmapPage({ setCurrentPage }) {
       {/* ======================================================== */}
       {/* VISUAL TIMELINE & WEEKLY CAPACITY ALLOCATION GRAPH       */}
       {/* ======================================================== */}
-      <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-5 sm:p-6 space-y-4 shadow-subtle">
+      <div className="bg-[#161B22] border border-[#30363D] rounded-xl p-5 sm:p-6 space-y-4 shadow-subtle">
         {/* Graph Header and Legend */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#29384F] pb-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#30363D] pb-3">
           <div>
-            <h2 className="text-sm font-bold text-[#F1F5F9] flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-[#22C5E5]" />
+            <h2 className="text-sm font-bold text-[#F0F6FC] flex items-center gap-2">
+              <BarChart2 className="w-4 h-4 text-[#58A6FF]" />
               <span>Weekly Capacity & Schedule Timeline Graph</span>
             </h2>
-            <p className="text-xs text-[#94A3B8] mt-0.5">
+            <p className="text-xs text-[#8B949E] mt-0.5">
               Strict capacity packing: task hours are scheduled so no single week exceeds your {capacityLimit}h/wk limit.
             </p>
           </div>
@@ -227,21 +227,21 @@ export default function RoadmapPage({ setCurrentPage }) {
           {/* Interactive Legend */}
           <div className="flex flex-wrap items-center gap-3 text-[11px] shrink-0">
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#34D399]" />
-              <span className="text-[#94A3B8]">Completed Hours</span>
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#3FB950]" />
+              <span className="text-[#8B949E]">Completed Hours</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-sm bg-[#22C5E5]" />
-              <span className="text-[#94A3B8]">Scheduled Hours</span>
+              <span className="w-2.5 h-2.5 rounded-sm bg-[#58A6FF]" />
+              <span className="text-[#8B949E]">Scheduled Hours</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-4 h-[2px] bg-[#FBBF24] border-t border-dashed border-[#FBBF24]" />
-              <span className="text-[#FBBF24] font-mono">Limit ({capacityLimit}h)</span>
+              <span className="w-4 h-[2px] bg-[#D29922] border-t border-dashed border-[#D29922]" />
+              <span className="text-[#D29922] font-mono">Limit ({capacityLimit}h)</span>
             </div>
             {selectedWeekFilter && (
               <button
                 onClick={() => setSelectedWeekFilter(null)}
-                className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#22C5E5] text-[10px] font-semibold border border-[#29384F]"
+                className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#21262D] hover:bg-[#30363D] text-[#58A6FF] text-[10px] font-semibold border border-[#30363D]"
                 title="Reset week filter"
               >
                 <RotateCcw className="w-3 h-3" />
@@ -255,12 +255,12 @@ export default function RoadmapPage({ setCurrentPage }) {
         <div className="relative pt-6 pb-2">
           {/* Capacity Threshold Line */}
           <div 
-            className="absolute left-0 right-0 border-t-2 border-dashed border-[#FBBF24]/70 z-10 pointer-events-none flex items-center justify-end"
+            className="absolute left-0 right-0 border-t-2 border-dashed border-[#D29922]/70 z-10 pointer-events-none flex items-center justify-end"
             style={{ 
               bottom: `${(capacityLimit / maxHoursScale) * 160 + 28}px` 
             }}
           >
-            <span className="bg-[#141F32] px-2 py-0.5 rounded text-[10px] font-mono font-bold text-[#FBBF24] border border-[#FBBF24]/40 -translate-y-1/2 mr-2">
+            <span className="bg-[#161B22] px-2 py-0.5 rounded text-[10px] font-mono font-bold text-[#D29922] border border-[#D29922]/40 -translate-y-1/2 mr-2">
               Capacity Limit: {capacityLimit}h/wk
             </span>
           </div>
@@ -288,18 +288,18 @@ export default function RoadmapPage({ setCurrentPage }) {
                   >
                     {/* Tooltip on Hover */}
                     {(isHovered || isSelected) && (
-                      <div className="absolute bottom-full mb-2 z-30 bg-[#0B1220] border border-[#29384F] text-[#F1F5F9] p-2 rounded-lg shadow-elevated text-[11px] whitespace-nowrap pointer-events-none animate-in fade-in zoom-in-95 duration-100">
-                        <div className="font-bold text-[#22C5E5]">
+                      <div className="absolute bottom-full mb-2 z-30 bg-[#0D1117] border border-[#30363D] text-[#F0F6FC] p-2 rounded-lg shadow-elevated text-[11px] whitespace-nowrap pointer-events-none animate-in fade-in zoom-in-95 duration-100">
+                        <div className="font-bold text-[#58A6FF]">
                           Week {w.week} (Stage {w.stage})
                         </div>
-                        <div className="text-[10px] text-[#94A3B8] font-mono">
+                        <div className="text-[10px] text-[#8B949E] font-mono">
                           Planned: {w.plannedHours}h • Completed: {w.completedHours}h
                         </div>
-                        <div className="text-[10px] text-[#94A3B8]">
+                        <div className="text-[10px] text-[#8B949E]">
                           {w.tasks.length} task{w.tasks.length > 1 ? "s" : ""} scheduled
                         </div>
                         {w.hasMilestone && (
-                          <div className="text-[10px] text-[#FBBF24] font-semibold mt-0.5">
+                          <div className="text-[10px] text-[#D29922] font-semibold mt-0.5">
                             ★ Milestone Checkpoint
                           </div>
                         )}
@@ -309,7 +309,7 @@ export default function RoadmapPage({ setCurrentPage }) {
                     {/* Milestone Star Indicator */}
                     <div className="h-4 flex items-center justify-center mb-1">
                       {w.hasMilestone && (
-                        <span className="text-[10px] text-[#FBBF24] leading-none" title="Milestone Week">
+                        <span className="text-[10px] text-[#D29922] leading-none" title="Milestone Week">
                           ★
                         </span>
                       )}
@@ -317,23 +317,23 @@ export default function RoadmapPage({ setCurrentPage }) {
 
                     {/* Bar Pillar */}
                     <div 
-                      className={`w-full max-w-[28px] rounded-t-md transition-all relative overflow-hidden ${
+                      className={`w-full max-w-[28px] rounded-t-sm transition-all relative overflow-hidden ${
                         isSelected 
-                          ? "ring-2 ring-[#22C5E5] shadow-glow-accent" 
+                          ? "ring-2 ring-[#58A6FF]" 
                           : "hover:opacity-90"
                       }`}
                       style={{ 
                         height: `${Math.max(6, (totalHeightPct / 100) * 130)}px`,
-                        backgroundColor: '#1A2940' 
+                        backgroundColor: '#21262D' 
                       }}
                     >
-                      {/* Scheduled Hours Base (Cyan) */}
-                      <div className="absolute inset-0 bg-[#22C5E5]/70" />
+                      {/* Scheduled Hours Base (Slate Blue) */}
+                      <div className="absolute inset-0 bg-[#58A6FF]/60" />
 
-                      {/* Completed Hours Overlay (Emerald) */}
+                      {/* Completed Hours Overlay (Green) */}
                       {w.completedHours > 0 && (
                         <div
-                          className="absolute bottom-0 left-0 right-0 bg-[#34D399] transition-all duration-300"
+                          className="absolute bottom-0 left-0 right-0 bg-[#3FB950] transition-all duration-300"
                           style={{ height: `${completedHeightPct}%` }}
                         />
                       )}
@@ -343,14 +343,14 @@ export default function RoadmapPage({ setCurrentPage }) {
                     <div className="mt-2 text-center">
                       <span className={`text-[10px] font-mono block ${
                         isSelected 
-                          ? "text-[#22C5E5] font-bold" 
+                          ? "text-[#58A6FF] font-bold" 
                           : isAllDone
-                          ? "text-[#34D399]"
-                          : "text-[#94A3B8]"
+                          ? "text-[#3FB950]"
+                          : "text-[#8B949E]"
                       }`}>
                         W{w.week}
                       </span>
-                      <span className="text-[9px] text-[#94A3B8] font-mono block">
+                      <span className="text-[9px] text-[#8B949E] font-mono block">
                         {w.plannedHours}h
                       </span>
                     </div>
@@ -363,13 +363,13 @@ export default function RoadmapPage({ setCurrentPage }) {
 
         {/* Selected Week Indicator if filtered */}
         {selectedWeekFilter && (
-          <div className="p-3 rounded-xl bg-[#0B1220] border border-[#22C5E5]/40 flex items-center justify-between text-xs">
-            <span className="text-[#94A3B8]">
-              Filtering tasks scheduled for <strong className="text-[#22C5E5]">Week {selectedWeekFilter}</strong> ({weeksData.find(w => w.week === selectedWeekFilter)?.tasks.length} tasks).
+          <div className="p-3 rounded-lg bg-[#0D1117] border border-[#58A6FF]/40 flex items-center justify-between text-xs">
+            <span className="text-[#8B949E]">
+              Filtering tasks scheduled for <strong className="text-[#58A6FF]">Week {selectedWeekFilter}</strong> ({weeksData.find(w => w.week === selectedWeekFilter)?.tasks.length} tasks).
             </span>
             <button
               onClick={() => setSelectedWeekFilter(null)}
-              className="text-[#22C5E5] hover:underline font-semibold text-xs"
+              className="text-[#58A6FF] hover:underline font-semibold text-xs"
             >
               Clear Filter
             </button>
@@ -378,10 +378,10 @@ export default function RoadmapPage({ setCurrentPage }) {
       </div>
 
       {/* Stage Detail Header Banner */}
-      <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-subtle">
+      <div className="bg-[#161B22] border border-[#30363D] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-subtle">
         <div className="space-y-0.5">
-          <h2 className="text-sm font-bold text-[#F1F5F9] flex items-center gap-2">
-            <Layers className="w-4 h-4 text-[#22C5E5]" />
+          <h2 className="text-sm font-bold text-[#F0F6FC] flex items-center gap-2">
+            <Layers className="w-4 h-4 text-[#58A6FF]" />
             <span>
               {selectedWeekFilter 
                 ? `Week ${selectedWeekFilter} Task Deliverables` 
@@ -389,23 +389,23 @@ export default function RoadmapPage({ setCurrentPage }) {
               }
             </span>
           </h2>
-          <p className="text-xs text-[#94A3B8]">
+          <p className="text-xs text-[#8B949E]">
             Sequential pacing strictly packed into weekly milestones respecting your {activeLearner?.available_hours_per_week}h/week limit.
           </p>
         </div>
 
         <div className="flex items-center gap-3 text-xs font-mono shrink-0">
-          <span className="text-[#94A3B8] bg-[#0B1220] px-2.5 py-1 rounded-lg border border-[#29384F]">
-            Planned: <strong className="text-[#F1F5F9]">{currentStageGroup.total_hours}h</strong>
+          <span className="text-[#8B949E] bg-[#0D1117] px-2.5 py-1 rounded-md border border-[#30363D]">
+            Planned: <strong className="text-[#F0F6FC]">{currentStageGroup.total_hours}h</strong>
           </span>
-          <span className="text-[#94A3B8] bg-[#0B1220] px-2.5 py-1 rounded-lg border border-[#29384F]">
-            Logged: <strong className="text-[#34D399]">{currentStageGroup.completed_hours}h</strong>
+          <span className="text-[#8B949E] bg-[#0D1117] px-2.5 py-1 rounded-md border border-[#30363D]">
+            Logged: <strong className="text-[#3FB950]">{currentStageGroup.completed_hours}h</strong>
           </span>
         </div>
       </div>
 
       {/* Task Cards List */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         {displayedTasks.map((task) => {
           const isCompleted = task.status === "completed";
           const isInProgress = task.status === "in_progress";
@@ -414,30 +414,30 @@ export default function RoadmapPage({ setCurrentPage }) {
           return (
             <div
               key={task.id}
-              className={`rounded-2xl border p-5 transition-all shadow-subtle ${
+              className={`rounded-xl border p-4 sm:p-5 transition-all shadow-subtle ${
                 isCompleted
-                  ? "bg-[#141F32]/90 border-[#34D399]/40"
+                  ? "bg-[#161B22] border-[#3FB950]/30"
                   : isMilestone
-                  ? "bg-[#141F32] border-[#FBBF24]/40"
-                  : "bg-[#141F32] border-[#29384F] hover:border-[#3D506E]"
+                  ? "bg-[#161B22] border-[#D29922]/30"
+                  : "bg-[#161B22] border-[#30363D] hover:border-[#8B949E]/40"
               }`}
             >
               {/* Task Header Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#29384F] pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#30363D] pb-3">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-[#1A2940] text-[#22C5E5] border border-[#29384F]">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#21262D] text-[#58A6FF] border border-[#30363D]">
                     Week {task.week_number}
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-mono text-[#94A3B8] bg-[#0B1220] border border-[#29384F]">
+                  <span className="px-2 py-0.5 rounded text-[11px] font-mono text-[#8B949E] bg-[#0D1117] border border-[#30363D]">
                     {task.est_hours} hrs
                   </span>
                   {task.linked_req_ids.map((rId) => (
-                    <span key={rId} className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#1A2940] text-[#22C5E5] border border-[#29384F]">
+                    <span key={rId} className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#21262D] text-[#58A6FF] border border-[#30363D]">
                       {rId}
                     </span>
                   ))}
                   {isMilestone && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FBBF24]/15 text-[#FBBF24] border border-[#FBBF24]/30">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#D29922]/15 text-[#D29922] border border-[#D29922]/30">
                       Checkpoint Milestone
                     </span>
                   )}
@@ -446,12 +446,12 @@ export default function RoadmapPage({ setCurrentPage }) {
                 {/* Status Badges */}
                 <div className="flex items-center gap-2">
                   <span
-                    className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    className={`px-2.5 py-0.5 rounded-md text-xs font-medium ${
                       isCompleted
-                        ? "bg-[#34D399]/15 text-[#34D399] border border-[#34D399]/30"
+                        ? "bg-[#3FB950]/15 text-[#3FB950] border border-[#3FB950]/30"
                         : isInProgress
-                        ? "bg-[#22C5E5]/15 text-[#22C5E5] border border-[#22C5E5]/30"
-                        : "bg-[#1A2940] text-[#94A3B8] border border-[#29384F]"
+                        ? "bg-[#58A6FF]/15 text-[#58A6FF] border border-[#58A6FF]/30"
+                        : "bg-[#21262D] text-[#8B949E] border border-[#30363D]"
                     }`}
                   >
                     {isCompleted ? "Completed" : isInProgress ? "In Progress" : "Pending"}
@@ -462,17 +462,17 @@ export default function RoadmapPage({ setCurrentPage }) {
               {/* Task Body */}
               <div className="mt-3.5 space-y-3">
                 <div>
-                  <h3 className="text-sm font-bold text-[#F1F5F9]">{task.title}</h3>
+                  <h3 className="text-sm font-semibold text-[#F0F6FC]">{task.title}</h3>
                   {task.description && (
-                    <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed">{task.description}</p>
+                    <p className="text-xs text-[#8B949E] mt-1 leading-relaxed">{task.description}</p>
                   )}
                 </div>
 
                 {/* Numeric Rationale Box */}
-                <div className="rounded-xl bg-[#0B1220] border border-[#29384F] p-3 flex items-start gap-2.5">
-                  <HelpCircle className="w-4 h-4 text-[#22C5E5] shrink-0 mt-0.5" />
-                  <div className="text-xs text-[#94A3B8] leading-relaxed">
-                    <span className="font-semibold text-[#F1F5F9] mr-1">Numeric Why:</span>
+                <div className="rounded-lg bg-[#0D1117] border border-[#30363D] p-3 flex items-start gap-2.5">
+                  <HelpCircle className="w-4 h-4 text-[#58A6FF] shrink-0 mt-0.5" />
+                  <div className="text-xs text-[#8B949E] leading-relaxed">
+                    <span className="font-medium text-[#F0F6FC] mr-1">Numeric Why:</span>
                     {task.numeric_why}
                   </div>
                 </div>
@@ -480,43 +480,43 @@ export default function RoadmapPage({ setCurrentPage }) {
                 {/* Resource & Deliverables */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs pt-1">
                   {task.resource_title && (
-                    <div className="bg-[#1A2940]/60 rounded-xl p-3 border border-[#29384F]">
-                      <span className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider block">
+                    <div className="bg-[#21262D]/60 rounded-lg p-3 border border-[#30363D]">
+                      <span className="text-[10px] font-semibold text-[#8B949E] uppercase tracking-wider block">
                         Curated Learning Resource
                       </span>
                       <a
                         href={task.resource_url}
                         target="_blank"
                         rel="noreferrer"
-                        className="font-semibold text-[#22C5E5] hover:text-[#06B6D4] flex items-center gap-1 mt-1 group"
+                        className="font-medium text-[#58A6FF] hover:underline flex items-center gap-1 mt-1 group"
                       >
-                        <span className="group-hover:underline truncate">{task.resource_title}</span>
+                        <span className="truncate">{task.resource_title}</span>
                         <ExternalLink className="w-3 h-3 shrink-0" />
                       </a>
                     </div>
                   )}
 
                   {task.evidence_artifact && (
-                    <div className="bg-[#1A2940]/60 rounded-xl p-3 border border-[#29384F]">
-                      <span className="text-[10px] font-semibold text-[#94A3B8] uppercase tracking-wider block">
+                    <div className="bg-[#21262D]/60 rounded-lg p-3 border border-[#30363D]">
+                      <span className="text-[10px] font-semibold text-[#8B949E] uppercase tracking-wider block">
                         Target Evidence Deliverable
                       </span>
-                      <span className="font-medium text-[#F1F5F9] line-clamp-2 mt-1">{task.evidence_artifact}</span>
+                      <span className="font-medium text-[#F0F6FC] line-clamp-2 mt-1">{task.evidence_artifact}</span>
                     </div>
                   )}
                 </div>
 
                 {/* Proof Link & Logged Hours if Completed */}
                 {isCompleted && (
-                  <div className="pt-2.5 flex flex-wrap items-center justify-between text-xs border-t border-[#29384F]">
-                    <div className="text-[#94A3B8] flex items-center gap-3">
-                      <span>Logged: <strong className="text-[#34D399]">{task.logged_hours} hrs</strong></span>
+                  <div className="pt-2.5 flex flex-wrap items-center justify-between text-xs border-t border-[#30363D]">
+                    <div className="text-[#8B949E] flex items-center gap-3">
+                      <span>Logged: <strong className="text-[#3FB950]">{task.logged_hours} hrs</strong></span>
                       {task.evidence_link && (
                         <a
                           href={task.evidence_link}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-[#22C5E5] hover:underline flex items-center gap-1 font-medium"
+                          className="text-[#58A6FF] hover:underline flex items-center gap-1 font-medium"
                         >
                           <FileText className="w-3 h-3" />
                           <span>Submitted Artifact</span>
@@ -533,7 +533,7 @@ export default function RoadmapPage({ setCurrentPage }) {
                       {task.status !== "in_progress" && (
                         <button
                           onClick={() => handleUpdateTaskStatus(task.id, "in_progress")}
-                          className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
+                          className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#21262D] hover:bg-[#30363D] text-[#8B949E] hover:text-[#F0F6FC] border border-[#30363D] transition-colors"
                         >
                           Start Task
                         </button>
@@ -544,7 +544,7 @@ export default function RoadmapPage({ setCurrentPage }) {
                           setLoggedHoursInput(String(task.est_hours));
                           setEvidenceLinkInput(task.evidence_link || "");
                         }}
-                        className="px-4 py-1.5 rounded-lg text-xs font-bold bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] shadow-sm flex items-center gap-1.5 transition-all focus:ring-1 focus:ring-[#22C5E5]"
+                        className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#1F6FEB] hover:bg-[#388BFD] text-white shadow-sm flex items-center gap-1.5 transition-colors focus:ring-1 focus:ring-[#58A6FF]"
                       >
                         <CheckSquare className="w-3.5 h-3.5" />
                         <span>Log & Complete</span>
@@ -554,7 +554,7 @@ export default function RoadmapPage({ setCurrentPage }) {
                   {isCompleted && (
                     <button
                       onClick={() => handleUpdateTaskStatus(task.id, "todo")}
-                      className="px-3 py-1 text-[11px] text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
+                      className="px-3 py-1 text-[11px] text-[#8B949E] hover:text-[#F0F6FC] transition-colors"
                     >
                       Re-open Task
                     </button>
@@ -568,37 +568,37 @@ export default function RoadmapPage({ setCurrentPage }) {
 
       {/* Completion Modal */}
       {activeTaskModal && (
-        <div className="fixed inset-0 z-50 bg-[#0B1220]/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-6 max-w-md w-full space-y-4 shadow-elevated">
-            <div className="flex items-center gap-2 text-[#22C5E5]">
+        <div className="fixed inset-0 z-50 bg-[#0D1117]/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
+          <div className="bg-[#161B22] border border-[#30363D] rounded-xl p-6 max-w-md w-full space-y-4 shadow-elevated">
+            <div className="flex items-center gap-2 text-[#58A6FF]">
               <CheckCircle2 className="w-5 h-5" />
-              <h3 className="text-base font-bold text-[#F1F5F9]">Log Task Completion</h3>
+              <h3 className="text-base font-bold text-[#F0F6FC]">Log Task Completion</h3>
             </div>
-            <p className="text-xs text-[#94A3B8]">
-              Record time spent and attach an evidence artifact link for <strong className="text-[#F1F5F9]">{activeTaskModal.title}</strong>.
+            <p className="text-xs text-[#8B949E]">
+              Record time spent and attach an evidence artifact link for <strong className="text-[#F0F6FC]">{activeTaskModal.title}</strong>.
             </p>
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-semibold text-[#F1F5F9] mb-1">Actual Hours Spent</label>
+                <label className="block text-xs font-medium text-[#F0F6FC] mb-1">Actual Hours Spent</label>
                 <input
                   type="number"
                   step="0.5"
                   min="0.5"
                   value={loggedHoursInput}
                   onChange={(e) => setLoggedHoursInput(e.target.value)}
-                  className="w-full bg-[#0B1220] border border-[#29384F] focus:border-[#22C5E5] focus:ring-1 focus:ring-[#22C5E5] rounded-lg px-3 py-2 text-xs text-[#F1F5F9] focus:outline-none"
+                  className="w-full bg-[#0D1117] border border-[#30363D] focus:border-[#58A6FF] focus:ring-1 focus:ring-[#58A6FF] rounded-lg px-3 py-2 text-xs text-[#F0F6FC] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#F1F5F9] mb-1">Evidence Artifact URL (GitHub, Demo, or Doc Link)</label>
+                <label className="block text-xs font-medium text-[#F0F6FC] mb-1">Evidence Artifact URL (GitHub, Demo, or Doc Link)</label>
                 <input
                   type="url"
                   placeholder="https://github.com/username/project-repo"
                   value={evidenceLinkInput}
                   onChange={(e) => setEvidenceLinkInput(e.target.value)}
-                  className="w-full bg-[#0B1220] border border-[#29384F] focus:border-[#22C5E5] focus:ring-1 focus:ring-[#22C5E5] rounded-lg px-3 py-2 text-xs text-[#F1F5F9] focus:outline-none"
+                  className="w-full bg-[#0D1117] border border-[#30363D] focus:border-[#58A6FF] focus:ring-1 focus:ring-[#58A6FF] rounded-lg px-3 py-2 text-xs text-[#F0F6FC] focus:outline-none"
                 />
               </div>
             </div>
@@ -606,13 +606,13 @@ export default function RoadmapPage({ setCurrentPage }) {
             <div className="flex justify-end gap-2.5 pt-2">
               <button
                 onClick={() => setActiveTaskModal(null)}
-                className="px-4 py-2 bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] rounded-lg text-xs font-semibold"
+                className="px-4 py-2 bg-[#21262D] hover:bg-[#30363D] text-[#8B949E] hover:text-[#F0F6FC] border border-[#30363D] rounded-lg text-xs font-medium transition-colors"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleUpdateTaskStatus(activeTaskModal.id, "completed", loggedHoursInput, evidenceLinkInput)}
-                className="px-5 py-2 bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] rounded-lg text-xs font-bold shadow-sm"
+                className="px-5 py-2 bg-[#1F6FEB] hover:bg-[#388BFD] text-white rounded-lg text-xs font-semibold shadow-sm transition-colors"
               >
                 Confirm Completion
               </button>

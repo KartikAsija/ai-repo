@@ -39,21 +39,21 @@ export default function ComparisonPage({ setCurrentPage }) {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-24 space-y-3">
-        <div className="w-8 h-8 border-3 border-[#22C5E5] border-t-transparent rounded-full animate-spin" />
-        <div className="text-xs text-[#94A3B8]">Computing deterministic skill gaps and rubric alignment...</div>
+        <div className="w-8 h-8 border-2 border-[#58A6FF] border-t-transparent rounded-full animate-spin" />
+        <div className="text-xs text-[#8B949E]">Computing deterministic skill gaps and rubric alignment...</div>
       </div>
     );
   }
 
   if (!analysis) {
     return (
-      <div className="text-center py-16 bg-[#141F32] rounded-2xl border border-[#29384F] p-8 shadow-subtle">
-        <AlertCircle className="w-8 h-8 text-[#FBBF24] mx-auto mb-2" />
-        <h3 className="text-sm font-bold text-[#F1F5F9]">No Gap Analysis Found</h3>
-        <p className="text-xs text-[#94A3B8] mt-1">Please select or configure a learner profile to evaluate framework fit.</p>
+      <div className="text-center py-16 bg-[#161B22] rounded-xl border border-[#30363D] p-8 shadow-subtle">
+        <AlertCircle className="w-8 h-8 text-[#D29922] mx-auto mb-2" />
+        <h3 className="text-sm font-bold text-[#F0F6FC]">No Gap Analysis Found</h3>
+        <p className="text-xs text-[#8B949E] mt-1">Please select or configure a learner profile to evaluate framework fit.</p>
         <button
           onClick={() => setCurrentPage("profile")}
-          className="mt-4 px-4 py-2 bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] rounded-lg text-xs font-bold shadow-sm"
+          className="mt-4 px-4 py-2 bg-[#1F6FEB] hover:bg-[#388BFD] text-white rounded-lg text-xs font-semibold shadow-sm transition-colors"
         >
           Configure Profile
         </button>
@@ -81,23 +81,23 @@ export default function ComparisonPage({ setCurrentPage }) {
   return (
     <div className="space-y-6 pb-20">
       {/* Header & Role Info */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#29384F] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#30363D] pb-4">
         <div>
-          <div className="text-[11px] font-semibold text-[#22C5E5] uppercase tracking-wider">
+          <div className="text-[11px] font-semibold text-[#58A6FF] uppercase tracking-wider">
             Framework Alignment & Gap Discovery
           </div>
-          <h1 className="text-2xl font-bold text-[#F1F5F9] flex items-center gap-2 mt-0.5">
-            <BarChart3 className="w-6 h-6 text-[#22C5E5]" />
+          <h1 className="text-2xl font-bold text-[#F0F6FC] flex items-center gap-2 mt-0.5">
+            <BarChart3 className="w-6 h-6 text-[#58A6FF]" />
             <span>Target Role: {analysis.role_title}</span>
           </h1>
-          <p className="text-xs text-[#94A3B8] mt-1">
-            Benchmarking <strong className="text-[#F1F5F9]">{activeLearner?.alias}</strong>'s competency against Level 1-5 criteria ({analysis.source || "SFIA 8 & O*NET"}).
+          <p className="text-xs text-[#8B949E] mt-1">
+            Benchmarking <strong className="text-[#F0F6FC]">{activeLearner?.alias}</strong>'s competency against Level 1-5 criteria ({analysis.source || "SFIA 8 & O*NET"}).
           </p>
         </div>
 
         <button
           onClick={() => setCurrentPage("roadmap")}
-          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] shadow-sm active:scale-95 transition-all focus:ring-2 focus:ring-[#22C5E5]"
+          className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-xs bg-[#1F6FEB] hover:bg-[#388BFD] text-white shadow-sm transition-colors focus:ring-1 focus:ring-[#58A6FF]"
         >
           <span>View Staged Roadmap</span>
           <ArrowRight className="w-4 h-4" />
@@ -137,25 +137,25 @@ export default function ComparisonPage({ setCurrentPage }) {
       </div>
 
       {/* Visual Proficiency Comparison Bars */}
-      <div className="bg-[#141F32] border border-[#29384F] rounded-2xl p-5 sm:p-6 space-y-4 shadow-subtle">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#29384F] pb-3">
+      <div className="bg-[#161B22] border border-[#30363D] rounded-xl p-5 sm:p-6 space-y-4 shadow-subtle">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#30363D] pb-3">
           <div>
-            <h2 className="text-sm font-bold text-[#F1F5F9] flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#22C5E5]" />
+            <h2 className="text-sm font-bold text-[#F0F6FC] flex items-center gap-2">
+              <Layers className="w-4 h-4 text-[#58A6FF]" />
               <span>Current Proficiency vs Required Proficiency</span>
             </h2>
-            <p className="text-xs text-[#94A3B8]">
+            <p className="text-xs text-[#8B949E]">
               Comparison across standard SFIA/O*NET 5-level scale (Level 1 Novice to Level 5 Expert)
             </p>
           </div>
           <div className="flex items-center gap-4 text-xs shrink-0">
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded bg-[#22C5E5] inline-block" />
-              <span className="text-[#F1F5F9] font-medium">Current Acquired</span>
+              <span className="w-3 h-3 rounded-sm bg-[#58A6FF] inline-block" />
+              <span className="text-[#F0F6FC] font-medium">Current Acquired</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded bg-[#29384F] inline-block border border-[#3D506E]" />
-              <span className="text-[#94A3B8]">Target Required</span>
+              <span className="w-3 h-3 rounded-sm bg-[#21262D] inline-block border border-[#30363D]" />
+              <span className="text-[#8B949E]">Target Required</span>
             </div>
           </div>
         </div>
@@ -170,20 +170,20 @@ export default function ComparisonPage({ setCurrentPage }) {
               <div key={req.req_id} className="space-y-1.5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs">
                   <div className="flex items-center gap-2 truncate">
-                    <span className="font-mono text-[11px] font-bold text-[#22C5E5] bg-[#1A2940] px-1.5 py-0.5 rounded border border-[#29384F]">
+                    <span className="font-mono text-[11px] font-semibold text-[#58A6FF] bg-[#21262D] px-1.5 py-0.5 rounded border border-[#30363D]">
                       {req.req_id}
                     </span>
-                    <span className="font-semibold text-[#F1F5F9] truncate">{req.skill}</span>
-                    <span className="text-[11px] text-[#94A3B8] hidden md:inline">({req.category})</span>
+                    <span className="font-semibold text-[#F0F6FC] truncate">{req.skill}</span>
+                    <span className="text-[11px] text-[#8B949E] hidden md:inline">({req.category})</span>
                   </div>
                   <div className="flex items-center gap-3 text-[11px] font-mono shrink-0">
-                    <span className="text-[#94A3B8]">
-                      Current: <strong className="text-[#22C5E5]">{req.current_level}</strong> / Req: <strong className="text-[#F1F5F9]">{req.required_level}</strong>
+                    <span className="text-[#8B949E]">
+                      Current: <strong className="text-[#58A6FF]">{req.current_level}</strong> / Req: <strong className="text-[#F0F6FC]">{req.required_level}</strong>
                     </span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${
                       isMet
-                        ? "bg-[#34D399]/15 text-[#34D399] border border-[#34D399]/30"
-                        : "bg-[#FBBF24]/15 text-[#FBBF24] border border-[#FBBF24]/30"
+                        ? "bg-[#3FB950]/15 text-[#3FB950] border border-[#3FB950]/30"
+                        : "bg-[#D29922]/15 text-[#D29922] border border-[#D29922]/30"
                     }`}>
                       {isMet ? "Met" : `Gap: -${req.gap}`}
                     </span>
@@ -191,17 +191,17 @@ export default function ComparisonPage({ setCurrentPage }) {
                 </div>
 
                 {/* Overlaid Progress Bar */}
-                <div className="h-2.5 w-full bg-[#0B1220] rounded-full relative overflow-hidden border border-[#29384F]">
+                <div className="h-2 w-full bg-[#0D1117] rounded-full relative overflow-hidden border border-[#30363D]">
                   {/* Required Target (Background Bar) */}
                   <div
-                    className="absolute top-0 bottom-0 bg-[#29384F] rounded-full"
+                    className="absolute top-0 bottom-0 bg-[#21262D] rounded-full"
                     style={{ width: `${requiredPct}%` }}
                     title={`Required: Level ${req.required_level}`}
                   />
                   {/* Current Acquired Level (Accent Bar) */}
                   <div
-                    className={`absolute top-0 bottom-0 rounded-full transition-all duration-500 ${
-                      isMet ? "bg-[#34D399]" : "bg-[#22C5E5]"
+                    className={`absolute top-0 bottom-0 rounded-full transition-all duration-300 ${
+                      isMet ? "bg-[#3FB950]" : "bg-[#58A6FF]"
                     }`}
                     style={{ width: `${currentPct}%` }}
                     title={`Current: Level ${req.current_level}`}
@@ -214,13 +214,13 @@ export default function ComparisonPage({ setCurrentPage }) {
       </div>
 
       {/* Structured Requirements Breakdown Table */}
-      <div className="bg-[#141F32] border border-[#29384F] rounded-2xl overflow-hidden shadow-subtle">
+      <div className="bg-[#161B22] border border-[#30363D] rounded-xl overflow-hidden shadow-subtle">
         {/* Table Filter & Sort Controls */}
-        <div className="p-4 border-b border-[#29384F] flex flex-wrap items-center justify-between gap-3 bg-[#1A2940]/40">
+        <div className="p-4 border-b border-[#30363D] flex flex-wrap items-center justify-between gap-3 bg-[#21262D]/40">
           <div className="flex items-center gap-2">
-            <Filter className="w-3.5 h-3.5 text-[#22C5E5]" />
-            <span className="text-xs font-semibold text-[#94A3B8]">Filter:</span>
-            <div className="flex rounded-lg bg-[#0B1220] p-0.5 border border-[#29384F]">
+            <Filter className="w-3.5 h-3.5 text-[#58A6FF]" />
+            <span className="text-xs font-semibold text-[#8B949E]">Filter:</span>
+            <div className="flex rounded-md bg-[#0D1117] p-0.5 border border-[#30363D]">
               {[
                 { id: "all", label: "All Skills" },
                 { id: "gaps", label: "Gaps Only" },
@@ -230,10 +230,10 @@ export default function ComparisonPage({ setCurrentPage }) {
                 <button
                   key={f.id}
                   onClick={() => setFilterStatus(f.id)}
-                  className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${
+                  className={`px-3 py-1 rounded text-xs font-medium transition-all ${
                     filterStatus === f.id 
-                      ? "bg-[#1A2940] text-[#22C5E5] font-semibold border border-[#29384F] shadow-sm" 
-                      : "text-[#94A3B8] hover:text-[#F1F5F9]"
+                      ? "bg-[#21262D] text-[#58A6FF] font-semibold border border-[#30363D] shadow-sm" 
+                      : "text-[#8B949E] hover:text-[#F0F6FC]"
                   }`}
                 >
                   {f.label}
@@ -243,16 +243,16 @@ export default function ComparisonPage({ setCurrentPage }) {
           </div>
 
           <div className="flex items-center gap-2">
-            <ArrowUpDown className="w-3.5 h-3.5 text-[#22C5E5]" />
-            <span className="text-xs font-semibold text-[#94A3B8]">Sort:</span>
+            <ArrowUpDown className="w-3.5 h-3.5 text-[#58A6FF]" />
+            <span className="text-xs font-semibold text-[#8B949E]">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-[#0B1220] border border-[#29384F] focus:border-[#22C5E5] rounded-lg px-2.5 py-1 text-xs text-[#F1F5F9] focus:outline-none cursor-pointer"
+              className="bg-[#0D1117] border border-[#30363D] focus:border-[#58A6FF] rounded-md px-2.5 py-1 text-xs text-[#F0F6FC] focus:outline-none cursor-pointer"
             >
-              <option value="priority" className="bg-[#141F32] text-[#F1F5F9]">Priority Ranking (High to Low)</option>
-              <option value="gap" className="bg-[#141F32] text-[#F1F5F9]">Gap Size (Largest first)</option>
-              <option value="skill" className="bg-[#141F32] text-[#F1F5F9]">Skill Name (A-Z)</option>
+              <option value="priority" className="bg-[#161B22] text-[#F0F6FC]">Priority Ranking (High to Low)</option>
+              <option value="gap" className="bg-[#161B22] text-[#F0F6FC]">Gap Size (Largest first)</option>
+              <option value="skill" className="bg-[#161B22] text-[#F0F6FC]">Skill Name (A-Z)</option>
             </select>
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function ComparisonPage({ setCurrentPage }) {
         {/* Responsive Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="bg-[#1A2940] text-[#94A3B8] font-semibold border-b border-[#29384F]">
+            <thead className="bg-[#21262D] text-[#8B949E] font-semibold border-b border-[#30363D]">
               <tr>
                 <th className="py-3 px-4">Req ID</th>
                 <th className="py-3 px-4">Framework Requirement</th>
@@ -273,7 +273,7 @@ export default function ComparisonPage({ setCurrentPage }) {
                 <th className="py-3 px-4">Evidence Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#29384F] text-[#94A3B8]">
+            <tbody className="divide-y divide-[#30363D] text-[#8B949E]">
               {sortedReqs.map((req) => {
                 const isVerified = req.verification_status === "verified";
                 const isStrength = req.status === "Strength";
@@ -281,33 +281,33 @@ export default function ComparisonPage({ setCurrentPage }) {
                 const isMissing = req.status === "Missing";
 
                 return (
-                  <tr key={req.req_id} className="hover:bg-[#1A2940]/40 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-[#22C5E5]">{req.req_id}</td>
+                  <tr key={req.req_id} className="hover:bg-[#21262D]/40 transition-colors">
+                    <td className="py-3 px-4 font-mono font-semibold text-[#58A6FF]">{req.req_id}</td>
                     <td className="py-3 px-4">
-                      <div className="font-semibold text-[#F1F5F9]">{req.skill}</div>
-                      <div className="text-[11px] text-[#94A3B8] mt-0.5 line-clamp-1">{req.description}</div>
+                      <div className="font-semibold text-[#F0F6FC]">{req.skill}</div>
+                      <div className="text-[11px] text-[#8B949E] mt-0.5 line-clamp-1">{req.description}</div>
                     </td>
-                    <td className="py-3 px-4 text-[#F1F5F9]">{req.category}</td>
-                    <td className="py-3 px-4 text-center font-bold text-[#F1F5F9]">Level {req.required_level}</td>
-                    <td className="py-3 px-4 text-center font-bold text-[#22C5E5]">Level {req.current_level}</td>
+                    <td className="py-3 px-4 text-[#F0F6FC]">{req.category}</td>
+                    <td className="py-3 px-4 text-center font-semibold text-[#F0F6FC]">Level {req.required_level}</td>
+                    <td className="py-3 px-4 text-center font-semibold text-[#58A6FF]">Level {req.current_level}</td>
                     <td className="py-3 px-4 text-center">
-                      <span className={`font-mono font-bold ${req.gap > 0 ? "text-[#FBBF24]" : "text-[#34D399]"}`}>
+                      <span className={`font-mono font-semibold ${req.gap > 0 ? "text-[#D29922]" : "text-[#3FB950]"}`}>
                         {req.gap > 0 ? `-${req.gap}` : "0"}
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-center font-mono font-bold text-[#22C5E5]">
+                    <td className="py-3 px-4 text-center font-mono font-semibold text-[#58A6FF]">
                       {req.priority}
                     </td>
                     <td className="py-3 px-4">
                       <span
-                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                        className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold ${
                           isStrength
-                            ? "bg-[#34D399]/15 text-[#34D399] border border-[#34D399]/30"
+                            ? "bg-[#3FB950]/15 text-[#3FB950] border border-[#3FB950]/30"
                             : isMissing
-                            ? "bg-[#F87171]/15 text-[#F87171] border border-[#F87171]/30"
+                            ? "bg-[#F85149]/15 text-[#F85149] border border-[#F85149]/30"
                             : isMajor
-                            ? "bg-[#FBBF24]/15 text-[#FBBF24] border border-[#FBBF24]/30"
-                            : "bg-[#22C5E5]/15 text-[#22C5E5] border border-[#22C5E5]/30"
+                            ? "bg-[#D29922]/15 text-[#D29922] border border-[#D29922]/30"
+                            : "bg-[#58A6FF]/15 text-[#58A6FF] border border-[#58A6FF]/30"
                         }`}
                       >
                         {req.status}
@@ -319,13 +319,13 @@ export default function ComparisonPage({ setCurrentPage }) {
                           href={req.proof_url}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#34D399] hover:underline"
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#3FB950] hover:underline"
                         >
                           <span>Verified Artifact</span>
                           <ExternalLink className="w-2.5 h-2.5" />
                         </a>
                       ) : (
-                        <span className="text-[11px] text-[#FBBF24]/80 italic">
+                        <span className="text-[11px] text-[#8B949E] italic">
                           Unverified
                         </span>
                       )}

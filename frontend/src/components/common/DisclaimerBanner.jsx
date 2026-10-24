@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import { ShieldCheck, X } from "lucide-react";
+import { Info, X } from "lucide-react";
 
 export default function DisclaimerBanner() {
   const [minimized, setMinimized] = useState(false);
 
   if (minimized) {
     return (
-      <div className="bg-[#141F32] border-b border-[#29384F] text-[11px] text-[#94A3B8] px-4 py-1 flex items-center justify-between">
+      <div className="bg-[#161B22] border-b border-[#30363D] text-[11px] text-[#8B949E] px-4 py-1 flex items-center justify-between">
         <span className="flex items-center gap-1.5">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#22C5E5]" />
-          <span>Ethical Notice: Estimates represent rubric alignment, not employment guarantees.</span>
+          <Info className="w-3.5 h-3.5 text-[#58A6FF]" />
+          <span>Guidance Notice: Assessments are readiness estimates against public standards, not job guarantees.</span>
         </span>
         <button
           onClick={() => setMinimized(false)}
-          className="text-[#22C5E5] hover:underline text-[10px] font-medium"
+          className="text-[#58A6FF] hover:underline text-[10px] font-medium"
         >
           Expand
         </button>
@@ -22,26 +22,22 @@ export default function DisclaimerBanner() {
   }
 
   return (
-    <div className="bg-[#141F32] border-b border-[#29384F] text-xs text-[#94A3B8] py-2 px-4 transition-all">
+    <div className="bg-[#161B22] border-b border-[#30363D] text-xs text-[#8B949E] py-1.5 px-4 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="w-5 h-5 rounded-md bg-[#FBBF24]/10 border border-[#FBBF24]/30 flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#FBBF24]" />
-          </div>
-          <p className="text-[11px] leading-tight sm:text-xs">
-            <strong className="text-[#F1F5F9] font-medium">Ethical Guidance Notice:</strong> This platform provides objective framework guidance, not employment guarantees. Assessments are readiness estimates against public industry rubrics (SFIA & O*NET), not measures of personal worth.
+        <div className="flex items-center gap-2">
+          <Info className="w-3.5 h-3.5 text-[#58A6FF] shrink-0" />
+          <p className="text-[11px] sm:text-xs text-[#8B949E]">
+            <strong className="text-[#F0F6FC] font-medium">Objective Guidance Notice:</strong> Assessments reflect rubric alignment with public industry standards (SFIA 8 & O*NET). This tool offers structured planning estimates, not employment guarantees.
           </p>
         </div>
         <button
           onClick={() => setMinimized(true)}
-          className="text-[#94A3B8] hover:text-[#F1F5F9] p-1 rounded hover:bg-[#1A2940] transition-colors shrink-0"
+          className="text-[#8B949E] hover:text-[#F0F6FC] p-0.5 rounded hover:bg-[#21262D] transition-colors shrink-0"
           title="Minimize notice"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-3 h-3" />
         </button>
       </div>
     </div>
   );
 }
-
-

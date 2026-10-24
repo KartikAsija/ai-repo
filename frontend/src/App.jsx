@@ -78,7 +78,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1220] text-[#F8FAFC] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#0D1117] text-[#F0F6FC] flex flex-col font-sans">
       {/* Persistent Disclaimer Banner (visible across all views) */}
       <DisclaimerBanner />
 
@@ -101,15 +101,15 @@ function AppContent() {
       </main>
 
       {/* Persistent Footer with Safeguard Notice */}
-      <footer className="bg-[#141F32] border-t border-[#29384F] py-6 text-xs text-[#94A3B8] mt-auto">
+      <footer className="bg-[#161B22] border-t border-[#30363D] py-6 text-xs text-[#8B949E] mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div>
-            <div className="font-semibold text-[#F1F5F9]">Your AI Career Navigator • Framework Alignment Engine</div>
-            <div className="text-[11px] text-[#94A3B8]">
+            <div className="font-semibold text-[#F0F6FC]">Your AI Career Navigator • Framework Alignment Engine</div>
+            <div className="text-[11px] text-[#8B949E]">
               Deterministic gap scoring & schedule packing • Aligned with SFIA 8 & O*NET standards
             </div>
           </div>
-          <div className="text-[11px] text-[#94A3B8] max-w-md">
+          <div className="text-[11px] text-[#8B949E] max-w-md">
             Estimates represent framework readiness guidance, not job guarantees. No personal ability ranking.
           </div>
         </div>
@@ -117,22 +117,22 @@ function AppContent() {
 
       {/* Automated Demo Walkthrough Modal */}
       {demoModalOpen && (
-        <div className="fixed inset-0 z-50 bg-[#0B1220]/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
-          <div className="bg-[#141F32] border border-[#29384F] rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-elevated">
-            <div className="flex items-center justify-between border-b border-[#29384F] pb-3">
+        <div className="fixed inset-0 z-50 bg-[#0D1117]/80 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150">
+          <div className="bg-[#161B22] border border-[#30363D] rounded-xl max-w-lg w-full p-6 space-y-4 shadow-elevated">
+            <div className="flex items-center justify-between border-b border-[#30363D] pb-3">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-[#22C5E5]" />
-                <h3 className="font-bold text-[#F1F5F9] text-sm">Automated 2-Learner Walkthrough</h3>
+                <Sparkles className="w-5 h-5 text-[#58A6FF]" />
+                <h3 className="font-bold text-[#F0F6FC] text-sm">Automated 2-Learner Walkthrough</h3>
               </div>
               <button
                 onClick={() => setDemoModalOpen(false)}
-                className="text-[#94A3B8] hover:text-[#F1F5F9] p-1 rounded hover:bg-[#1A2940] transition-colors"
+                className="text-[#8B949E] hover:text-[#F0F6FC] p-1 rounded hover:bg-[#21262D] transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <p className="text-xs text-[#94A3B8]">
+            <p className="text-xs text-[#8B949E]">
               Simulating profile comparison, staged roadmaps, logged progress, and replan diffs for both learners:
             </p>
 
@@ -150,19 +150,19 @@ function AppContent() {
                   key={item.step}
                   className={`flex items-center gap-2 p-2 rounded-lg text-xs font-medium transition-all ${
                     demoStep === item.step
-                      ? "bg-[#1A2940] text-[#22C5E5] border border-[#22C5E5]/40 shadow-sm"
+                      ? "bg-[#21262D] text-[#58A6FF] border border-[#58A6FF]/40 shadow-sm"
                       : demoStep > item.step
-                      ? "text-[#34D399]"
-                      : "text-[#94A3B8]/60"
+                      ? "text-[#3FB950]"
+                      : "text-[#8B949E]/60"
                   }`}
                 >
                   <CheckCircle2
                     className={`w-4 h-4 shrink-0 ${
                       demoStep > item.step
-                        ? "text-[#34D399]"
+                        ? "text-[#3FB950]"
                         : demoStep === item.step
-                        ? "text-[#22C5E5] animate-pulse"
-                        : "text-[#29384F]"
+                        ? "text-[#58A6FF] animate-pulse"
+                        : "text-[#30363D]"
                     }`}
                   />
                   <span>{item.text}</span>
@@ -171,10 +171,10 @@ function AppContent() {
             </div>
 
             {/* Live Log */}
-            <div className="bg-[#0B1220] p-3.5 rounded-xl border border-[#29384F] text-[11px] font-mono text-[#F1F5F9] space-y-1 max-h-36 overflow-y-auto custom-scrollbar">
+            <div className="bg-[#0D1117] p-3.5 rounded-lg border border-[#30363D] text-[11px] font-mono text-[#F0F6FC] space-y-1 max-h-36 overflow-y-auto custom-scrollbar">
               {demoLog.map((log, idx) => (
                 <div key={idx} className="leading-tight">
-                  <span className="text-[#34D399] mr-1.5">✓</span>
+                  <span className="text-[#3FB950] mr-1.5">✓</span>
                   {log}
                 </div>
               ))}
@@ -184,7 +184,7 @@ function AppContent() {
               <button
                 onClick={() => setDemoModalOpen(false)}
                 disabled={demoRunning}
-                className="px-5 py-2 bg-[#22C5E5] hover:bg-[#06B6D4] text-[#0B1220] disabled:opacity-50 rounded-lg text-xs font-bold transition-all shadow-sm"
+                className="px-5 py-2 bg-[#1F6FEB] hover:bg-[#388BFD] text-white disabled:opacity-50 rounded-lg text-xs font-semibold transition-colors shadow-sm"
               >
                 {demoRunning ? "Simulating Walkthrough..." : "Close & Explore App"}
               </button>

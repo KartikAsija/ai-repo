@@ -5,7 +5,6 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
 
-  // Initialize viewDate based on value or current date
   const parseDate = (dateStr) => {
     if (!dateStr) return new Date();
     const parts = dateStr.split("-");
@@ -20,14 +19,12 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
 
   const [viewDate, setViewDate] = useState(() => parseDate(value));
 
-  // Sync viewDate when value changes
   useEffect(() => {
     if (value) {
       setViewDate(parseDate(value));
     }
   }, [value]);
 
-  // Click outside listener
   useEffect(() => {
     function handleClickOutside(event) {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -51,8 +48,6 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
   ];
 
   const daysOfWeek = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-
-  // Days in current month
   const totalDays = new Date(year, month + 1, 0).getDate();
   const startDayIndex = new Date(year, month, 1).getDay();
 
@@ -89,7 +84,6 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
     onChange("");
   };
 
-  // Format display string
   const formatDisplay = (val) => {
     if (!val) return "";
     const parsed = parseDate(val);
@@ -112,16 +106,16 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
       <div
         data-testid="calendar-trigger"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-[#0B1220] border border-[#29384F] hover:border-[#3D506E] rounded-lg px-3 py-2 text-xs text-[#F1F5F9] cursor-pointer flex items-center justify-between transition-colors focus-within:ring-1 focus-within:ring-[#22C5E5] focus-within:border-[#22C5E5]"
+        className="w-full bg-[#0D1117] border border-[#30363D] hover:border-[#484F58] rounded-lg px-3 py-2 text-xs text-[#F0F6FC] cursor-pointer flex items-center justify-between transition-colors focus-within:border-[#58A6FF]"
       >
         <div className="flex items-center gap-2 truncate">
-          <CalendarIcon className="w-4 h-4 text-[#22C5E5] shrink-0" />
+          <CalendarIcon className="w-3.5 h-3.5 text-[#8B949E] shrink-0" />
           {value ? (
-            <span className="font-medium text-[#F1F5F9]">
-              {formatDisplay(value)} <span className="text-[#94A3B8] font-mono text-[11px]">({value})</span>
+            <span className="font-medium text-[#F0F6FC]">
+              {formatDisplay(value)} <span className="text-[#8B949E] font-mono text-[11px]">({value})</span>
             </span>
           ) : (
-            <span className="text-[#94A3B8]">{placeholder}</span>
+            <span className="text-[#8B949E]">{placeholder}</span>
           )}
         </div>
 
@@ -130,7 +124,7 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
             <button
               type="button"
               onClick={handleClear}
-              className="text-[#94A3B8] hover:text-[#F87171] p-0.5 rounded transition-colors"
+              className="text-[#8B949E] hover:text-[#F85149] p-0.5 rounded transition-colors"
               title="Clear date"
             >
               <X className="w-3.5 h-3.5" />
@@ -141,29 +135,29 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
 
       {/* Calendar Dropdown Popover */}
       {isOpen && (
-        <div className="absolute left-0 top-full mt-1.5 z-50 w-72 bg-[#141F32] border border-[#29384F] rounded-xl p-3 shadow-elevated backdrop-blur-md animate-in fade-in zoom-in-95 duration-100">
+        <div className="absolute left-0 top-full mt-1.5 z-50 w-72 bg-[#161B22] border border-[#30363D] rounded-xl p-3 shadow-elevated">
           {/* Quick Presets */}
-          <div className="flex items-center justify-between gap-1 pb-2.5 mb-2.5 border-b border-[#29384F] text-[10px]">
-            <span className="text-[#94A3B8] font-semibold uppercase tracking-wider">Presets:</span>
+          <div className="flex items-center justify-between gap-1 pb-2 mb-2 border-b border-[#30363D] text-[10px]">
+            <span className="text-[#8B949E] font-medium uppercase tracking-wider">Presets:</span>
             <div className="flex gap-1">
               <button
                 type="button"
                 onClick={() => handleApplyPreset(3)}
-                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#21262D] hover:bg-[#30363D] text-[#8B949E] hover:text-[#F0F6FC] border border-[#30363D] transition-colors"
               >
                 +3 Mo
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset(6)}
-                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#21262D] hover:bg-[#30363D] text-[#8B949E] hover:text-[#F0F6FC] border border-[#30363D] transition-colors"
               >
                 +6 Mo
               </button>
               <button
                 type="button"
                 onClick={() => handleApplyPreset(12)}
-                className="px-2 py-0.5 rounded bg-[#1A2940] hover:bg-[#1E3250] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#29384F] transition-colors"
+                className="px-2 py-0.5 rounded bg-[#21262D] hover:bg-[#30363D] text-[#8B949E] hover:text-[#F0F6FC] border border-[#30363D] transition-colors"
               >
                 +1 Yr
               </button>
@@ -175,82 +169,81 @@ export default function CalendarDropdown({ value, onChange, placeholder = "Selec
             <button
               type="button"
               onClick={handlePrevMonth}
-              className="p-1 rounded-lg hover:bg-[#1A2940] text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
+              className="p-1 rounded-md hover:bg-[#21262D] text-[#8B949E] hover:text-[#F0F6FC] transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <div className="font-bold text-xs text-[#F1F5F9]">
+            <div className="text-xs font-semibold text-[#F0F6FC]">
               {monthNames[month]} {year}
             </div>
             <button
               type="button"
               onClick={handleNextMonth}
-              className="p-1 rounded-lg hover:bg-[#1A2940] text-[#94A3B8] hover:text-[#F1F5F9] transition-colors"
+              className="p-1 rounded-md hover:bg-[#21262D] text-[#8B949E] hover:text-[#F0F6FC] transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Days of week header */}
-          <div className="grid grid-cols-7 gap-1 text-center mb-1">
-            {daysOfWeek.map((day) => (
-              <span key={day} className="text-[10px] font-semibold text-[#94A3B8] py-0.5">
-                {day}
-              </span>
+          {/* Weekday headers */}
+          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-medium text-[#8B949E] mb-1">
+            {daysOfWeek.map((d) => (
+              <div key={d}>{d}</div>
             ))}
           </div>
 
           {/* Days Grid */}
-          <div className="grid grid-cols-7 gap-1 text-center">
-            {/* Empty padding cells for start of month */}
+          <div className="grid grid-cols-7 gap-1 text-xs">
             {Array.from({ length: startDayIndex }).map((_, i) => (
-              <span key={`empty-${i}`} className="p-1" />
+              <div key={`blank-${i}`} className="p-1 text-transparent">
+                .
+              </div>
             ))}
 
-            {/* Actual Month Days */}
             {Array.from({ length: totalDays }).map((_, i) => {
-              const dayNum = i + 1;
+              const day = i + 1;
               const isSelected =
-                selectedDay === dayNum &&
-                selectedMonth === month &&
-                selectedYear === year;
+                selectedYear === year && selectedMonth === month && selectedDay === day;
 
-              // Check if today
-              const today = new Date();
               const isToday =
-                today.getDate() === dayNum &&
-                today.getMonth() === month &&
-                today.getFullYear() === year;
+                new Date().getFullYear() === year &&
+                new Date().getMonth() === month &&
+                new Date().getDate() === day;
 
               return (
                 <button
-                  key={dayNum}
+                  key={day}
                   type="button"
-                  onClick={() => handleSelectDay(dayNum)}
-                  className={`w-8 h-7 text-xs rounded-md flex items-center justify-center transition-all ${
+                  onClick={() => handleSelectDay(day)}
+                  className={`p-1.5 rounded-md text-center transition-colors text-[11px] font-medium ${
                     isSelected
-                      ? "bg-[#22C5E5] text-[#0B1220] font-bold shadow-sm"
+                      ? "bg-[#1F6FEB] text-white font-semibold"
                       : isToday
-                      ? "border border-[#22C5E5] text-[#22C5E5] hover:bg-[#1A2940]"
-                      : "text-[#F1F5F9] hover:bg-[#1A2940]"
+                      ? "border border-[#58A6FF] text-[#58A6FF] hover:bg-[#21262D]"
+                      : "text-[#F0F6FC] hover:bg-[#21262D]"
                   }`}
                 >
-                  {dayNum}
+                  {day}
                 </button>
               );
             })}
           </div>
 
-          {/* Footer with Today shortcut */}
-          <div className="mt-2.5 pt-2 border-t border-[#29384F] flex justify-between items-center text-[10px]">
+          <div className="mt-2 pt-2 border-t border-[#30363D] flex items-center justify-between text-[10px]">
             <button
               type="button"
               onClick={() => handleApplyPreset(0)}
-              className="text-[#22C5E5] hover:underline font-semibold"
+              className="text-[#58A6FF] hover:underline"
             >
-              Select Today
+              Today
             </button>
-            <span className="text-[#94A3B8]">Click day to choose</span>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="text-[#8B949E] hover:text-[#F0F6FC]"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
